@@ -56,8 +56,8 @@ export class ScriptToAudio {
 
       command
         .on('end', () => resolve())
-        .on('error', (err) => reject(err))
-        .mergeToFile(outputPath);
+        .on('error', (err: Error) => reject(err))
+        .mergeToFile(outputPath, this.outputDir);
     });
   }
 }

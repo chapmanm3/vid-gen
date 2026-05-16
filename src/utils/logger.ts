@@ -7,6 +7,25 @@ export interface LogEntry {
   [key: string]: unknown;
 }
 
+const isDev = () => process.env.NODE_ENV !== 'production';
+
+function formatDev(level: LogLevel, message: string, meta?: Record<string, unknown>): string {
+  const colors: Record<LogLevel, string> = {
+    info: '\x1b[36m',
+    warn: '\x1b[33m',
+    error: '\x1b[31m',
+    debug: '\x1b[90m',
+  };
+  const reset = '\x1b[0m';
+  const ts = new Date().toLocaleTimeString();
+  const prefix = `${colors[level]}[${level.toUpperCase()}]${reset} ${ts}`;
+  let out = `${prefix} ${message}`;
+  if (meta && Object.keys(meta).length > 0) {
+    out += ` ${JSON.stringify(meta)}`;
+  }
+  return out;
+}
+
 export function log(level: LogLevel, message: string, meta?: Record<string, unknown>): void {
   const entry: LogEntry = {
     level,
@@ -15,10 +34,21 @@ export function log(level: LogLevel, message: string, meta?: Record<string, unkn
     ...meta,
   };
 
-  if (level === 'error') {
-    console.error(JSON.stringify(entry));
+  if (isDev()) {
+    const output = formatDev(level, message, meta);
+    if (level === 'error') {
+      console.error(output);
+    } else if (level === 'warn') {
+      console.warn(output);
+    } else {
+      console.log(output);
+    }
   } else {
-    console.log(JSON.stringify(entry));
+    if (level === 'error') {
+      console.error(JSON.stringify(entry));
+    } else {
+      console.log(JSON.stringify(entry));
+    }
   }
 }
 
@@ -35,7 +65,7 @@ export function error(message: string, meta?: Record<string, unknown>): void {
 }
 
 export function debug(message: string, meta?: Record<string, unknown>): void {
-  if (process.env.NODE_ENV !== 'production') {
+  if (isDev()) {
     log('debug', message, meta);
   }
 }

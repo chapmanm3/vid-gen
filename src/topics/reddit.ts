@@ -40,19 +40,19 @@ async function fetchSubredditHot(subreddit: string, limit = 5): Promise<RedditTo
     throw new Error(`Reddit API error for r/${subreddit}: ${response.status}`);
   }
 
-  const data = await response.json();
-  const posts = data.data?.children || [];
+  const data = (await response.json()) as Record<string, unknown>;
+  const posts = ((data.data as Record<string, unknown>)?.children as unknown[]) || [];
 
-  return posts
-    .filter((child: Record<string, Record<string, unknown>>) => !child.data.stickied)
-    .map((child: Record<string, Record<string, unknown>>) => {
-      const d = child.data;
+  return (posts as Record<string, unknown>[])
+    .filter((child) => !(child.data as Record<string, unknown>)?.stickied)
+    .map((child) => {
+      const d = child.data as Record<string, unknown>;
       return {
         title: d.title as string,
         summary: (d.selftext as string)?.slice(0, 300) || '',
         url: `https://reddit.com${d.permalink as string}`,
         score: d.score as number,
-        subreddit: subreddit,
+        subreddit: d.subreddit as string,
         numComments: d.num_comments as number,
         source: 'reddit',
       };
@@ -73,11 +73,11 @@ export async function searchTopics(keyword: string, limit = 10): Promise<RedditT
     throw new Error(`Reddit search API error: ${response.status}`);
   }
 
-  const data = await response.json();
-  const posts = data.data?.children || [];
+  const data = (await response.json()) as Record<string, unknown>;
+  const posts = ((data.data as Record<string, unknown>)?.children as unknown[]) || [];
 
-  return posts.map((child: Record<string, Record<string, unknown>>) => {
-    const d = child.data;
+  return (posts as Record<string, unknown>[]).map((child) => {
+    const d = child.data as Record<string, unknown>;
     return {
       title: d.title as string,
       summary: (d.selftext as string)?.slice(0, 300) || '',

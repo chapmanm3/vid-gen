@@ -1,8 +1,9 @@
 import { Router, Request, Response } from 'express';
 import { PipelineOrchestrator } from '../pipeline/orchestrator';
 import { enqueue, getStatus } from '../queue';
+import { info, error } from '../utils/logger';
 
-const router = Router();
+const router: Router = Router();
 
 router.post('/api/videos', async (req: Request, res: Response) => {
   const { topic, keywords } = req.body;
@@ -14,13 +15,17 @@ router.post('/api/videos', async (req: Request, res: Response) => {
   const topicValue = topic || keywords?.join(', ');
   const jobId = enqueue(topicValue);
 
+  info('Video job enqueued', { jobId, topic: topicValue });
+
   const orchestrator = new PipelineOrchestrator();
 
   setImmediate(async () => {
     try {
+      info('Starting pipeline', { jobId });
       await orchestrator.run(jobId, topicValue);
-    } catch {
-      // Error handling is done inside orchestrator
+      info('Pipeline complete', { jobId });
+    } catch (err) {
+      error('Pipeline failed', { jobId, error: err instanceof Error ? err.message : 'unknown' });
     }
   });
 
@@ -28,8 +33,9 @@ router.post('/api/videos', async (req: Request, res: Response) => {
 });
 
 router.get('/api/videos/:jobId', (req: Request, res: Response) => {
-  const job = getStatus(req.params.jobId);
+  const job = getStatus(req.params.jobId as string);
   if (!job) {
+    info('Video job not found', { jobId: req.params.jobId });
     return res.status(404).json({ error: 'Job not found' });
   }
   res.json(job);

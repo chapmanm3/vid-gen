@@ -96,6 +96,12 @@ export function updateJobStatus(
   return getJob(id);
 }
 
+export function getAllJobs(): Job[] {
+  const database = getDatabase();
+  const stmt = database.prepare('SELECT * FROM jobs ORDER BY createdAt DESC');
+  return stmt.all() as Job[];
+}
+
 export function resetDatabase(): void {
   if (db) {
     try {

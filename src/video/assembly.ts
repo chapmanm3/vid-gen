@@ -158,7 +158,7 @@ export async function concatVideos(
         fs.unlinkSync(listFile);
         resolve(outputPath);
       })
-      .on('error', (err) => {
+      .on('error', (err: Error) => {
         try { fs.unlinkSync(listFile); } catch {}
         reject(err);
       })

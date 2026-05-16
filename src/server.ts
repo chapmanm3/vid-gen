@@ -1,7 +1,10 @@
+import 'dotenv/config';
 import app from './index';
+import { info } from './utils/logger';
+import { getConfig } from './config';
 
-const PORT = process.env.PORT || 3000;
+const config = getConfig();
 
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
+app.listen(config.PORT, () => {
+  info('Server started', { port: config.PORT, env: config.NODE_ENV });
 });

@@ -28,20 +28,23 @@ export async function searchImages(keyword: string, limit = 10): Promise<Wikimed
     throw new Error(`Wikimedia API error: ${response.status}`);
   }
 
-  const data = await response.json();
-  const pages = data.query?.pages || {};
+  const data = (await response.json()) as Record<string, unknown>;
+  const query = data.query as Record<string, unknown> | undefined;
+  const pages = (query?.pages as Record<string, Record<string, unknown>>) || {};
 
   return Object.values(pages)
-    .filter((page: Record<string, unknown>) => page.imageinfo && Array.isArray(page.imageinfo))
-    .map((page: Record<string, unknown>) => {
+    .filter((page) => page.imageinfo && Array.isArray(page.imageinfo))
+    .map((page) => {
       const info = (page.imageinfo as Record<string, unknown>[])[0];
+      const extmetadata = (info.extmetadata as Record<string, unknown>) || {};
+      const licenseObj = (extmetadata.LicenseShortName as Record<string, unknown>) || {};
       return {
         title: page.title as string,
         url: info.url as string,
         thumbnailUrl: (info.thumburl || info.url) as string,
         width: Number(info.width || 800),
         height: Number(info.height || 600),
-        license: (info.extmetadata?.LicenseShortName?.value as string) || 'Unknown',
+        license: (licenseObj.value as string) || 'Unknown',
       };
     });
 }

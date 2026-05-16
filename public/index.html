@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YouTube Video Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #e1e1e1; min-height: 100vh; }
+    .container { max-width: 800px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #fff; }
+    .subtitle { color: #aaa; margin-bottom: 2rem; }
+    .card { background: #1a1a1a; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #2a2a2a; }
+    .input-group { display: flex; gap: 0.75rem; }
+    input[type="text"] { flex: 1; padding: 0.75rem 1rem; border-radius: 8px; border: 1px solid #333; background: #0f0f0f; color: #fff; font-size: 1rem; }
+    input[type="text"]:focus { outline: none; border-color: #3ea6ff; }
+    button { padding: 0.75rem 1.5rem; border-radius: 8px; border: none; background: #3ea6ff; color: #0f0f0f; font-weight: 600; cursor: pointer; font-size: 1rem; }
+    button:hover { background: #65b8ff; }
+    button:disabled { opacity: 0.5; cursor: not-allowed; }
+    .job-list { margin-top: 1.5rem; }
+    .job-item { background: #222; border-radius: 8px; padding: 1rem; margin-bottom: 0.75rem; border-left: 4px solid #555; }
+    .job-item.queued { border-left-color: #f5c542; }
+    .job-item.processing { border-left-color: #3ea6ff; }
+    .job-item.completed { border-left-color: #2ba640; }
+    .job-item.failed { border-left-color: #cc0000; }
+    .job-topic { font-weight: 600; margin-bottom: 0.25rem; }
+    .job-status { font-size: 0.875rem; color: #aaa; text-transform: capitalize; }
+    .job-meta { font-size: 0.75rem; color: #666; margin-top: 0.5rem; }
+    .empty { text-align: center; color: #666; padding: 2rem; }
+    .refresh-btn { background: transparent; border: 1px solid #444; color: #aaa; padding: 0.5rem 1rem; font-size: 0.875rem; }
+    .refresh-btn:hover { background: #333; color: #fff; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .error-msg { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; }
+    .video-link { color: #3ea6ff; text-decoration: none; }
+    .video-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>YouTube Video Generator</h1>
+    <p class="subtitle">Generate automated history/facts videos for YouTube</p>
+
+    <div class="card">
+      <form id="generate-form">
+        <label style="display:block; margin-bottom:0.5rem; font-weight:500;">Topic</label>
+        <div class="input-group">
+          <input type="text" id="topic-input" placeholder="e.g., Fall of the Roman Empire" required>
+          <button type="submit" id="generate-btn">Generate</button>
+        </div>
+        <div id="error-msg" class="error-msg" style="display:none;"></div>
+      </form>
+    </div>
+
+    <div class="header">
+      <h2 style="font-size:1.25rem;">Jobs</h2>
+      <button class="refresh-btn" id="refresh-btn">Refresh</button>
+    </div>
+
+    <div id="job-list" class="job-list">
+      <div class="empty">No jobs yet. Generate your first video above!</div>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('generate-form');
+    const topicInput = document.getElementById('topic-input');
+    const generateBtn = document.getElementById('generate-btn');
+    const jobList = document.getElementById('job-list');
+    const refreshBtn = document.getElementById('refresh-btn');
+    const errorMsg = document.getElementById('error-msg');
+
+    let knownJobs = new Set();
+
+    async function submitJob(topic) {
+      generateBtn.disabled = true;
+      errorMsg.style.display = 'none';
+
+      try {
+        const res = await fetch('/api/videos', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ topic })
+        });
+
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || 'Failed to create job');
+        }
+
+        const job = await res.json();
+        knownJobs.add(job.jobId);
+        topicInput.value = '';
+        await fetchJobs();
+      } catch (err) {
+        errorMsg.textContent = err.message;
+        errorMsg.style.display = 'block';
+      } finally {
+        generateBtn.disabled = false;
+      }
+    }
+
+    async function fetchJobs() {
+      try {
+        const res = await fetch('/api/jobs');
+        if (res.ok) {
+          const jobs = await res.json();
+          renderJobs(jobs);
+        }
+      } catch (err) {
+        console.error('Failed to fetch jobs:', err);
+      }
+    }
+
+    function renderJobs(jobs) {
+      if (!jobs || jobs.length === 0) {
+        jobList.innerHTML = '<div class="empty">No jobs yet. Generate your first video above!</div>';
+        return;
+      }
+
+      jobList.innerHTML = jobs.map(job => `
+        <div class="job-item ${job.status}">
+          <div class="job-topic">${escapeHtml(job.topic || 'Untitled')}</div>
+          <div class="job-status">${job.status}</div>
+          <div class="job-meta">
+            ID: ${job.id} | Created: ${formatDate(job.createdAt)}
+            ${job.status === 'completed' && job.videoPath ? ` | <a href="${job.videoPath}" class="video-link" download>Download Video</a>` : ''}
+            ${job.status === 'failed' && job.error ? ` | Error: ${escapeHtml(job.error)}` : ''}
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return 'N/A';
+      return new Date(dateStr).toLocaleString();
+    }
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const topic = topicInput.value.trim();
+      if (topic) submitJob(topic);
+    });
+
+    refreshBtn.addEventListener('click', fetchJobs);
+
+    // Initial load and auto-refresh every 5 seconds
+    fetchJobs();
+    setInterval(fetchJobs, 5000);
+  </script>
+</body>
+</html>

@@ -98,7 +98,7 @@ export function buildPrompt(context: PromptContext): { system: string; user: str
   };
 }
 
-export function buildFullScriptPrompt(topic: string, targetDurationMinutes = 9): string {
+export function buildFullScriptPrompt(topic: string, targetDurationMinutes = 9): { system: string; user: string } {
   return {
     system: SYSTEM_PROMPT,
     user: `Write a complete YouTube script about "${topic}" for a ${targetDurationMinutes}-minute history video.
