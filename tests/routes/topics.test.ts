@@ -1,8 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import request from 'supertest';
 import express from 'express';
+import path from 'path';
 import * as queue from '../../src/queue';
 import { resetDatabase, getJob } from '../../src/db';
+
+let testCounter = 0;
 
 function createTestApp(topicsRouter: express.Router) {
   const app = express();
@@ -15,11 +18,14 @@ describe('Topic Routes', () => {
   beforeEach(() => {
     resetDatabase();
     queue.clear();
+    testCounter++;
+    process.env.DB_PATH = path.join(process.cwd(), 'data', `test-topics-${testCounter}.db`);
   });
 
   afterEach(() => {
     resetDatabase();
     queue.clear();
+    delete process.env.DB_PATH;
   });
 
   describe('POST /api/topics/select', () => {
