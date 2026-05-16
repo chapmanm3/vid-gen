@@ -18,10 +18,12 @@ describe('Database', () => {
     resetDatabase();
     testCounter++;
     testDbPath = path.join(process.cwd(), 'data', `test-db-${testCounter}.db`);
+    process.env.DB_PATH = testDbPath;
   });
 
   afterEach(() => {
     resetDatabase();
+    delete process.env.DB_PATH;
   });
 
   function id(name: string): string {
