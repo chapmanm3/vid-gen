@@ -14,10 +14,15 @@ export interface Job {
 }
 
 let db: Database.Database | null = null;
+let currentDbPath: string | null = null;
 
 export function getDatabase(dbPath?: string): Database.Database {
-  if (!db) {
-    const filePath = dbPath || process.env.DB_PATH || path.join(process.cwd(), 'data', 'app.db');
+  const filePath = dbPath || process.env.DB_PATH || path.join(process.cwd(), 'data', 'app.db');
+  if (!db || currentDbPath !== filePath) {
+    if (db) {
+      db.close();
+    }
+    currentDbPath = filePath;
     const dir = path.dirname(filePath);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -93,17 +98,13 @@ export function updateJobStatus(
 
 export function resetDatabase(): void {
   if (db) {
-    const dbPath = (db as any).name;
+    try {
+      db.exec('DELETE FROM jobs');
+    } catch {
+      // Table might not exist yet
+    }
     db.close();
     db = null;
-    if (dbPath && fs.existsSync(dbPath)) {
-      fs.unlinkSync(dbPath);
-    }
-    if (dbPath && fs.existsSync(dbPath + '-wal')) {
-      fs.unlinkSync(dbPath + '-wal');
-    }
-    if (dbPath && fs.existsSync(dbPath + '-shm')) {
-      fs.unlinkSync(dbPath + '-shm');
-    }
+    currentDbPath = null;
   }
 }
