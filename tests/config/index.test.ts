@@ -44,6 +44,26 @@ describe('Config', () => {
     expect(cfg.OPENAI_TTS_VOICE).toBe('nova');
   });
 
+  it('uses custom OPENAI_TTS_MODEL when set', () => {
+    process.env.OPENAI_API_KEY = 'sk-test-key';
+    process.env.OPENAI_TTS_MODEL = 'tts-1-hd';
+    const cfg = getConfig();
+    expect(cfg.OPENAI_TTS_MODEL).toBe('tts-1-hd');
+  });
+
+  it('uses custom OPENAI_TTS_SPEED when set', () => {
+    process.env.OPENAI_API_KEY = 'sk-test-key';
+    process.env.OPENAI_TTS_SPEED = '1.5';
+    const cfg = getConfig();
+    expect(cfg.OPENAI_TTS_SPEED).toBe(1.5);
+  });
+
+  it('throws when OPENAI_TTS_VOICE is invalid', () => {
+    process.env.OPENAI_API_KEY = 'sk-test-key';
+    process.env.OPENAI_TTS_VOICE = 'invalid-voice';
+    expect(() => getConfig()).toThrow();
+  });
+
   it('throws when OPENAI_API_KEY is missing', () => {
     delete process.env.OPENAI_API_KEY;
     expect(() => getConfig()).toThrow('OPENAI_API_KEY');

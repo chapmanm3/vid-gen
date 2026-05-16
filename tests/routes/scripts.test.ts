@@ -22,6 +22,8 @@ vi.mock('../../src/config', () => ({
     PORT: 3000,
     NODE_ENV: 'test',
     OPENAI_TTS_VOICE: 'alloy',
+    OPENAI_TTS_MODEL: 'tts-1',
+    OPENAI_TTS_SPEED: 1.0,
   }),
 }));
 
