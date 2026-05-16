@@ -1,5 +1,6 @@
 import express, { Request, Response } from 'express';
 import jobsRouter from './routes/jobs';
+import topicsRouter from './routes/topics';
 
 const app = express();
 
@@ -10,5 +11,6 @@ app.get('/health', (_req: Request, res: Response) => {
 });
 
 app.use(jobsRouter);
+app.use(topicsRouter);
 
 export default app;
