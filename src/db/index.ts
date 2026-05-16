@@ -17,7 +17,7 @@ let db: Database.Database | null = null;
 
 export function getDatabase(dbPath?: string): Database.Database {
   if (!db) {
-    const filePath = dbPath || path.join(process.cwd(), 'data', 'app.db');
+    const filePath = dbPath || process.env.DB_PATH || path.join(process.cwd(), 'data', 'app.db');
     const dir = path.dirname(filePath);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
@@ -93,7 +93,17 @@ export function updateJobStatus(
 
 export function resetDatabase(): void {
   if (db) {
+    const dbPath = (db as any).name;
     db.close();
     db = null;
+    if (dbPath && fs.existsSync(dbPath)) {
+      fs.unlinkSync(dbPath);
+    }
+    if (dbPath && fs.existsSync(dbPath + '-wal')) {
+      fs.unlinkSync(dbPath + '-wal');
+    }
+    if (dbPath && fs.existsSync(dbPath + '-shm')) {
+      fs.unlinkSync(dbPath + '-shm');
+    }
   }
 }
