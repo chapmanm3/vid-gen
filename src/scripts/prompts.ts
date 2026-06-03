@@ -17,14 +17,21 @@ WRITING GUIDELINES:
 - Avoid filler phrases like "In this video we'll explore"
 - Write for spoken delivery - use shorter sentences and natural rhythm
 - Each segment should flow naturally into the next
-- Include visual cue suggestions in brackets like [Show: map of ancient Rome]
+
+CRITICAL: The "text" field must contain ONLY words to be spoken aloud. NEVER include:
+- Visual directions like "[Show: ...]", "[Cut to: ...]", "[Display: ...]"
+- Stage directions, camera cues, or production notes
+- Any text in brackets or parentheses meant for the editor
+- Formatting markers or annotations
+
+Visual suggestions go ONLY in the separate "visualCue" field. The "text" field is fed directly into a text-to-speech engine and must be clean spoken prose.
 
 FORMAT:
 Respond ONLY with valid JSON matching this structure:
 {
-  "text": "The script text for this segment...",
+  "text": "The script text for this segment (spoken words only)...",
   "estimatedDuration": 30,
-  "visualCue": "Description of suggested visual",
+  "visualCue": "Description of suggested visual (separate from text)",
   "keywords": ["keyword1", "keyword2"]
 }`;
 
@@ -103,6 +110,11 @@ export function buildFullScriptPrompt(topic: string, targetDurationMinutes = 9):
     system: SYSTEM_PROMPT,
     user: `Write a complete YouTube script about "${topic}" for a ${targetDurationMinutes}-minute history video.
 
+CRITICAL RULES:
+- The "text" field must contain ONLY spoken words. NO visual directions, NO bracketed cues, NO stage directions.
+- Visual suggestions go ONLY in the separate "visualCue" field.
+- If you put "[Show: ...]" or similar in the "text" field, the script will be ruined.
+
 The script should have these segments in order:
 1. Hook (15-20 seconds) - Grab attention immediately
 2. Intro (30 seconds) - Set context and time period
@@ -118,9 +130,9 @@ Respond with a JSON object containing:
   "segments": [
     {
       "type": "hook|intro|body|transition|conclusion|cta",
-      "text": "Script text...",
+      "text": "Spoken words only - NO bracketed directions",
       "estimatedDuration": 30,
-      "visualCue": "Visual suggestion...",
+      "visualCue": "Visual suggestion goes HERE, not in text",
       "keywords": ["keyword1", "keyword2"]
     }
   ],

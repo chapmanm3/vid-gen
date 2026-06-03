@@ -65,11 +65,7 @@ export class VideoRenderer {
     }
 
     const concatenatedPath = path.join(workDir, 'concatenated.mp4');
-    if (segmentVideos.length === 1) {
-      await concatVideos(segmentVideos, concatenatedPath);
-    } else {
-      await concatVideos(segmentVideos, concatenatedPath);
-    }
+    await concatVideos(segmentVideos, concatenatedPath);
 
     const withAudioPath = path.join(workDir, 'with-audio.mp4');
     await addAudioToVideo(concatenatedPath, audioPath, withAudioPath);

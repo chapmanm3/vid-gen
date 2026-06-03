@@ -1,0 +1,21 @@
+[2026-05-16T21:45:27.542Z] [INFO] ============================================================
+[2026-05-16T21:45:27.542Z] [INFO] E2E Video Creation Test
+[2026-05-16T21:45:27.542Z] [INFO] ============================================================
+[2026-05-16T21:45:27.542Z] [INFO] Configuration
+{
+  "baseUrl": "http://localhost:3000",
+  "topic": "The Fall of the Roman Empire",
+  "pollInterval": "5000ms",
+  "pollTimeout": "600000ms",
+  "startServer": true,
+  "logFile": "/home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T21-45-27-540Z.log"
+}
+[2026-05-16T21:45:27.542Z] [STEP] Starting server
+[2026-05-16T21:45:27.543Z] [INFO] Starting server...
+[2026-05-16T21:45:27.570Z] [INFO] Server not ready yet, retrying (1/30)...
+[2026-05-16T21:45:29.574Z] [INFO] Server not ready yet, retrying (2/30)...
+[2026-05-16T21:45:30.337Z] [INFO] [server stdout] [36m[INFO][0m 5:45:30 PM Server started {"port":3000,"env":"development"}
+[2026-05-16T21:45:31.590Z] [INFO] [server stdout] [90m[DEBUG][0m 5:45:31 PM GET /health {"method":"GET","path":"/health"}
+[2026-05-16T21:45:31.610Z] [INFO] Server is ready
+[2026-05-16T21:45:31.611Z] [STEP] Testing health check endpoint
+[2026-05-16T21:45:31.612Z] [INFO] [server stdout] [36m[INFO][0m 5:45:31 PM GET /health 200 17ms {"method":"GET","path":"/health","status":200,"duration":17}

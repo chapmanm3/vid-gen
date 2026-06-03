@@ -4,11 +4,13 @@
   "description": "Automated YouTube video generation service for history/facts content",
   "main": "dist/index.js",
   "scripts": {
+    "preinstall": "npx -y only-allow pnpm",
     "build": "tsc",
     "start": "node dist/server.js",
     "dev": "ts-node src/server.ts",
     "test": "vitest run",
-    "test:watch": "vitest"
+    "test:watch": "vitest",
+    "test:e2e": "ts-node --transpile-only tests/e2e/test-video-flow.ts"
   },
   "repository": {
     "type": "git",

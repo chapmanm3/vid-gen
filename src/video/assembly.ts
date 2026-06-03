@@ -23,6 +23,37 @@ const DEFAULT_CONFIG: VideoConfig = {
   outputDir: path.join(process.cwd(), 'data', 'videos'),
 };
 
+function hexToRgb(hex: string): { r: number; g: number; b: number } {
+  const cleaned = hex.replace('#', '');
+  return {
+    r: parseInt(cleaned.substring(0, 2), 16),
+    g: parseInt(cleaned.substring(2, 4), 16),
+    b: parseInt(cleaned.substring(4, 6), 16),
+  };
+}
+
+function createBlankFrame(width: number, height: number, color: string): string {
+  const { r, g, b } = hexToRgb(color);
+  const frameDir = path.join(process.cwd(), 'data', 'videos', '.tmp');
+  if (!fs.existsSync(frameDir)) {
+    fs.mkdirSync(frameDir, { recursive: true });
+  }
+  const framePath = path.join(frameDir, `blank-${width}x${height}-${color}.ppm`);
+  if (fs.existsSync(framePath)) {
+    return framePath;
+  }
+  const header = `P6\n${width} ${height}\n255\n`;
+  const pixelCount = width * height;
+  const pixels = Buffer.alloc(pixelCount * 3);
+  for (let i = 0; i < pixelCount; i++) {
+    pixels[i * 3] = r;
+    pixels[i * 3 + 1] = g;
+    pixels[i * 3 + 2] = b;
+  }
+  fs.writeFileSync(framePath, header + pixels);
+  return framePath;
+}
+
 export async function createBlankVideo(
   duration: number,
   color: string,
@@ -32,12 +63,19 @@ export async function createBlankVideo(
   const finalConfig = { ...DEFAULT_CONFIG, ...config };
   ensureOutputDir(outputPath);
 
+  const framePath = createBlankFrame(finalConfig.width, finalConfig.height, color);
+
   return new Promise((resolve, reject) => {
-    ffmpeg()
-      .addInput(`color=c=${color}:s=${finalConfig.width}x${finalConfig.height}:r=${finalConfig.fps}`)
-      .addInputOptions(['-t', String(duration), '-f', 'lavfi'])
+    ffmpeg(framePath)
+      .loop(duration)
+      .fps(finalConfig.fps)
       .videoCodec('libx264')
-      .outputOptions(['-pix_fmt', 'yuv420p', '-preset', 'fast'])
+      .outputOptions([
+        '-vf', `scale=${finalConfig.width}:${finalConfig.height}`,
+        '-pix_fmt', 'yuv420p',
+        '-preset', 'fast',
+        '-t', String(duration),
+      ])
       .output(outputPath)
       .on('end', () => resolve(outputPath))
       .on('error', reject)

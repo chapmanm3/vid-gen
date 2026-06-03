@@ -32,8 +32,16 @@ export async function searchImages(keyword: string, limit = 10): Promise<Wikimed
   const query = data.query as Record<string, unknown> | undefined;
   const pages = (query?.pages as Record<string, Record<string, unknown>>) || {};
 
+  const IMAGE_EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.webp', '.tiff', '.tif', '.bmp']);
+
   return Object.values(pages)
-    .filter((page) => page.imageinfo && Array.isArray(page.imageinfo))
+    .filter((page) => {
+      if (!page.imageinfo || !Array.isArray(page.imageinfo)) return false;
+      const info = (page.imageinfo as Record<string, unknown>[])[0];
+      const url = (info.url as string) || '';
+      const ext = '.' + url.split('.').pop()?.toLowerCase();
+      return IMAGE_EXTENSIONS.has(ext);
+    })
     .map((page) => {
       const info = (page.imageinfo as Record<string, unknown>[])[0];
       const extmetadata = (info.extmetadata as Record<string, unknown>) || {};

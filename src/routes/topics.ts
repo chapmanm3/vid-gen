@@ -1,9 +1,16 @@
 import { Router, Request, Response } from 'express';
+import { z } from 'zod';
 import { fetchRandomTopic, searchTopics as wikiSearch, fetchOnThisDay } from '../topics/wikipedia';
 import { fetchTrendingTopics as redditTrendingFn, searchTopics as redditSearch } from '../topics/reddit';
 import { scoreTopics } from '../topics/scorer';
 import { enqueue } from '../queue';
 import { info, warn, error } from '../utils/logger';
+import { validateRequest } from '../middleware/validate';
+
+const selectTopicSchema = z.object({
+  topic: z.string().min(1).optional(),
+  keywords: z.array(z.string().min(1)).min(1).optional(),
+}).refine((d) => d.topic || d.keywords, { message: 'topic or keywords is required' });
 
 const router: Router = Router();
 
@@ -74,14 +81,9 @@ router.get('/api/topics/search', async (req: Request, res: Response) => {
   }
 });
 
-router.post('/api/topics/select', (req: Request, res: Response) => {
+router.post('/api/topics/select', validateRequest(selectTopicSchema), (req: Request, res: Response) => {
   const { topic, keywords } = req.body;
-
-  if (!topic && !keywords) {
-    return res.status(400).json({ error: 'topic or keywords is required' });
-  }
-
-  const topicValue = topic || keywords?.join(', ');
+  const topicValue = topic || (keywords as string[]).join(', ');
   const jobId = enqueue(topicValue);
 
   if (topic) {

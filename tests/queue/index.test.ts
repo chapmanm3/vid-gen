@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeEach, afterEach } from 'vitest';
 import path from 'path';
 import * as queue from '../../src/queue';
-import { resetDatabase, getJob } from '../../src/db';
+import { resetDatabase, getJob, updateJobStatus, createJob } from '../../src/db';
 
 let testCounter = 0;
 
@@ -119,6 +119,63 @@ describe('Queue', () => {
 
       const job = queue.getStatus(id);
       expect(job!.status).toBe('failed');
+    });
+  });
+
+  describe('retryJob', () => {
+    beforeEach(() => {
+      queue.clearHandler();
+    });
+
+    it('requeues a failed job', () => {
+      const id = queue.enqueue('Retry topic');
+      queue.updateStatus(id, 'failed', { error: 'Something broke' });
+
+      const retried = queue.retryJob(id);
+      expect(retried).not.toBe(null);
+      expect(retried!.status).toBe('queued');
+    });
+
+    it('increments retryCount in database', () => {
+      const id = queue.enqueue('Count topic');
+      queue.updateStatus(id, 'failed', { error: 'Error' });
+
+      queue.retryJob(id);
+
+      const dbJob = getJob(id);
+      expect(dbJob!.retryCount).toBe(1);
+    });
+
+    it('clears error on retry', () => {
+      const id = queue.enqueue('Clear error');
+      queue.updateStatus(id, 'failed', { error: 'Bad thing' });
+
+      queue.retryJob(id);
+
+      const dbJob = getJob(id);
+      expect(dbJob!.error).toBe(null);
+    });
+
+    it('returns null for non-failed job', () => {
+      const id = queue.enqueue('Not failed');
+
+      const result = queue.retryJob(id);
+      expect(result).toBe(null);
+    });
+
+    it('returns null for non-existent job', () => {
+      const result = queue.retryJob('does-not-exist');
+      expect(result).toBe(null);
+    });
+
+    it('retries a failed job that is only in the database', () => {
+      const id = 'db-only-job';
+      createJob(id, 'DB only topic');
+      updateJobStatus(id, 'failed', { error: 'DB error' });
+
+      const retried = queue.retryJob(id);
+      expect(retried).not.toBe(null);
+      expect(retried!.status).toBe('queued');
     });
   });
 });

@@ -1,0 +1,1650 @@
+[2026-05-16T22:49:49.189Z] [INFO] ============================================================
+[2026-05-16T22:49:49.189Z] [INFO] E2E Video Creation Test
+[2026-05-16T22:49:49.189Z] [INFO] ============================================================
+[2026-05-16T22:49:49.189Z] [INFO] Configuration
+{
+  "baseUrl": "http://localhost:3000",
+  "topic": "The Fall of the Roman Empire",
+  "pollInterval": "5000ms",
+  "pollTimeout": "600000ms",
+  "startServer": true,
+  "logFile": "/home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T22-49-49-187Z.log"
+}
+[2026-05-16T22:49:49.190Z] [STEP] Starting server
+[2026-05-16T22:49:49.190Z] [INFO] Starting server...
+[2026-05-16T22:49:49.214Z] [INFO] Server not ready yet, retrying (1/30)...
+[2026-05-16T22:49:51.215Z] [INFO] Server not ready yet, retrying (2/30)...
+[2026-05-16T22:49:51.822Z] [INFO] [server stdout] [36m[INFO][0m 6:49:51 PM Server started {"port":3000,"env":"development"}
+[2026-05-16T22:49:53.219Z] [INFO] [server stdout] [90m[DEBUG][0m 6:49:53 PM GET /health {"method":"GET","path":"/health"}
+[2026-05-16T22:49:53.225Z] [INFO] Server is ready
+[2026-05-16T22:49:53.225Z] [STEP] Testing health check endpoint
+[2026-05-16T22:49:53.225Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM GET /health 200 4ms {"method":"GET","path":"/health","status":200,"duration":4}
+[2026-05-16T22:49:53.225Z] [INFO] [server stdout] [90m[DEBUG][0m 6:49:53 PM GET /health {"method":"GET","path":"/health"}
+[2026-05-16T22:49:53.226Z] [INFO] Health check passed
+[2026-05-16T22:49:53.227Z] [STEP] Submitting video job
+{
+  "topic": "The Fall of the Roman Empire"
+}
+[2026-05-16T22:49:53.227Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM GET /health 200 1ms {"method":"GET","path":"/health","status":200,"duration":1}
+[2026-05-16T22:49:53.228Z] [INFO] [server stdout] [90m[DEBUG][0m 6:49:53 PM POST /api/videos {"method":"POST","path":"/api/videos"}
+[2026-05-16T22:49:53.258Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM Video job enqueued {"jobId":"job-1778971793233-1","topic":"The Fall of the Roman Empire"}
+[2026-05-16T22:49:53.259Z] [INFO] Job submitted successfully
+{
+  "jobId": "job-1778971793233-1",
+  "status": "queued"
+}
+[2026-05-16T22:49:53.259Z] [STEP] Polling job status (via DB endpoint)
+{
+  "jobId": "job-1778971793233-1"
+}
+[2026-05-16T22:49:53.259Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM POST /api/videos 201 32ms {"method":"POST","path":"/api/videos","status":201,"duration":32}
+[36m[INFO][0m 6:49:53 PM Starting pipeline {"jobId":"job-1778971793233-1"}
+[36m[INFO][0m 6:49:53 PM [pipeline] Step 1: Generating script {"jobId":"job-1778971793233-1","topic":"The Fall of the Roman Empire"}
+[2026-05-16T22:49:53.317Z] [INFO] [server stdout] [90m[DEBUG][0m 6:49:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:49:53.318Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:49:53.318Z] [INFO] Job status: queued (elapsed: 0.0s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:49:53.318Z] [INFO] [server stdout] [36m[INFO][0m 6:49:53 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:49:58.325Z] [INFO] [server stdout] [90m[DEBUG][0m 6:49:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:49:58.326Z] [INFO] [server stdout] [36m[INFO][0m 6:49:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:49:58.329Z] [INFO] Job status: queued (elapsed: 5.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:49:58.329Z] [INFO] [server stdout] [36m[INFO][0m 6:49:58 PM GET /api/jobs/job-1778971793233-1 200 4ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":4}
+[2026-05-16T22:50:03.334Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:03.336Z] [INFO] [server stdout] [36m[INFO][0m 6:50:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:03.338Z] [INFO] Job status: queued (elapsed: 10.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:03.338Z] [INFO] [server stdout] [36m[INFO][0m 6:50:03 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:50:08.343Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:08.344Z] [INFO] [server stdout] [36m[INFO][0m 6:50:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:08.346Z] [INFO] Job status: queued (elapsed: 15.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:08.346Z] [INFO] [server stdout] [36m[INFO][0m 6:50:08 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:50:09.030Z] [INFO] [server stdout] [36m[INFO][0m 6:50:09 PM [pipeline] Script generated {"jobId":"job-1778971793233-1","segments":6}
+[2026-05-16T22:50:09.031Z] [INFO] [server stdout] [36m[INFO][0m 6:50:09 PM [pipeline] Step 2: Generating voice {"jobId":"job-1778971793233-1"}
+[2026-05-16T22:50:13.347Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:13.347Z] [INFO] [server stdout] [36m[INFO][0m 6:50:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:13.348Z] [INFO] Job status: queued (elapsed: 20.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:13.348Z] [INFO] [server stdout] [36m[INFO][0m 6:50:13 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:50:18.353Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:18.354Z] [INFO] [server stdout] [36m[INFO][0m 6:50:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:18.357Z] [INFO] Job status: queued (elapsed: 25.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:18.358Z] [INFO] [server stdout] [36m[INFO][0m 6:50:18 PM GET /api/jobs/job-1778971793233-1 200 4ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":4}
+[2026-05-16T22:50:23.361Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:23.361Z] [INFO] [server stdout] [36m[INFO][0m 6:50:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:23.362Z] [INFO] Job status: queued (elapsed: 30.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:23.363Z] [INFO] [server stdout] [36m[INFO][0m 6:50:23 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:50:28.366Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:28.367Z] [INFO] [server stdout] [36m[INFO][0m 6:50:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:28.368Z] [INFO] Job status: queued (elapsed: 35.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:28.369Z] [INFO] [server stdout] [36m[INFO][0m 6:50:28 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:50:33.370Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:33.370Z] [INFO] [server stdout] [36m[INFO][0m 6:50:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:33.371Z] [INFO] Job status: queued (elapsed: 40.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:33.371Z] [INFO] [server stdout] [36m[INFO][0m 6:50:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:50:38.374Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:38.374Z] [INFO] [server stdout] [36m[INFO][0m 6:50:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:38.376Z] [INFO] Job status: queued (elapsed: 45.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:38.376Z] [INFO] [server stdout] [36m[INFO][0m 6:50:38 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:50:43.380Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:43.381Z] [INFO] [server stdout] [36m[INFO][0m 6:50:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:43.383Z] [INFO] Job status: queued (elapsed: 50.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:43.383Z] [INFO] [server stdout] [36m[INFO][0m 6:50:43 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:50:48.388Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:48.389Z] [INFO] [server stdout] [36m[INFO][0m 6:50:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:48.390Z] [INFO] Job status: queued (elapsed: 55.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:48.390Z] [INFO] [server stdout] [36m[INFO][0m 6:50:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:50:53.393Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:53.394Z] [INFO] [server stdout] [36m[INFO][0m 6:50:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:53.395Z] [INFO] Job status: queued (elapsed: 60.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:53.396Z] [INFO] [server stdout] [36m[INFO][0m 6:50:53 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:50:58.400Z] [INFO] [server stdout] [90m[DEBUG][0m 6:50:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:50:58.400Z] [INFO] [server stdout] [36m[INFO][0m 6:50:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:50:58.402Z] [INFO] Job status: queued (elapsed: 65.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:50:58.402Z] [INFO] [server stdout] [36m[INFO][0m 6:50:58 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:51:03.405Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:03.406Z] [INFO] [server stdout] [36m[INFO][0m 6:51:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:03.407Z] [INFO] Job status: queued (elapsed: 70.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:03.408Z] [INFO] [server stdout] [36m[INFO][0m 6:51:03 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:51:08.410Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:08.411Z] [INFO] [server stdout] [36m[INFO][0m 6:51:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:08.413Z] [INFO] Job status: queued (elapsed: 75.1s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:08.413Z] [INFO] [server stdout] [36m[INFO][0m 6:51:08 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:51:09.762Z] [INFO] [server stdout] [36m[INFO][0m 6:51:09 PM [pipeline] Voice generated {"jobId":"job-1778971793233-1","audioPath":"/home/matt/vid-gen/data/audio/job-1778971793233-1/full-audio.mp3","duration":540}
+[2026-05-16T22:51:09.763Z] [INFO] [server stdout] [36m[INFO][0m 6:51:09 PM [pipeline] Step 3: Fetching visuals {"jobId":"job-1778971793233-1"}
+[2026-05-16T22:51:10.551Z] [INFO] [server stdout] [36m[INFO][0m 6:51:10 PM [pipeline] Visuals fetched {"jobId":"job-1778971793233-1","images":4,"videos":0}
+[2026-05-16T22:51:10.552Z] [INFO] [server stdout] [36m[INFO][0m 6:51:10 PM [pipeline] Visuals matched {"jobId":"job-1778971793233-1","planSize":6}
+[2026-05-16T22:51:10.553Z] [INFO] [server stdout] [36m[INFO][0m 6:51:10 PM [pipeline] Assets downloaded {"jobId":"job-1778971793233-1","count":6}
+[2026-05-16T22:51:10.554Z] [INFO] [server stdout] [36m[INFO][0m 6:51:10 PM [pipeline] Step 4: Rendering video {"jobId":"job-1778971793233-1"}
+[2026-05-16T22:51:13.416Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:13.417Z] [INFO] [server stdout] [36m[INFO][0m 6:51:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:13.418Z] [INFO] Job status: queued (elapsed: 80.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:13.418Z] [INFO] [server stdout] [36m[INFO][0m 6:51:13 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:51:18.421Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:18.421Z] [INFO] [server stdout] [36m[INFO][0m 6:51:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:18.423Z] [INFO] Job status: queued (elapsed: 85.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:18.423Z] [INFO] [server stdout] [36m[INFO][0m 6:51:18 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:51:23.424Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:23.424Z] [INFO] [server stdout] [36m[INFO][0m 6:51:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:23.424Z] [INFO] Job status: queued (elapsed: 90.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:23.424Z] [INFO] [server stdout] [36m[INFO][0m 6:51:23 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:51:28.427Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:28.427Z] [INFO] [server stdout] [36m[INFO][0m 6:51:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:28.428Z] [INFO] Job status: queued (elapsed: 95.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:28.429Z] [INFO] [server stdout] [36m[INFO][0m 6:51:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:33.430Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:33.431Z] [INFO] [server stdout] [36m[INFO][0m 6:51:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:33.431Z] [INFO] Job status: queued (elapsed: 100.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:33.431Z] [INFO] [server stdout] [36m[INFO][0m 6:51:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:38.433Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:38.434Z] [INFO] [server stdout] [36m[INFO][0m 6:51:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:38.435Z] [INFO] Job status: queued (elapsed: 105.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:38.435Z] [INFO] [server stdout] [36m[INFO][0m 6:51:38 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:43.436Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:43.436Z] [INFO] [server stdout] [36m[INFO][0m 6:51:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:43.437Z] [INFO] Job status: queued (elapsed: 110.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:43.437Z] [INFO] [server stdout] [36m[INFO][0m 6:51:43 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:48.438Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:48.439Z] [INFO] [server stdout] [36m[INFO][0m 6:51:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:48.439Z] [INFO] Job status: queued (elapsed: 115.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:48.439Z] [INFO] [server stdout] [36m[INFO][0m 6:51:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:53.441Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:53.441Z] [INFO] [server stdout] [36m[INFO][0m 6:51:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:53.442Z] [INFO] Job status: queued (elapsed: 120.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:53.442Z] [INFO] [server stdout] [36m[INFO][0m 6:51:53 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:51:58.443Z] [INFO] [server stdout] [90m[DEBUG][0m 6:51:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:51:58.444Z] [INFO] [server stdout] [36m[INFO][0m 6:51:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:51:58.445Z] [INFO] Job status: queued (elapsed: 125.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:51:58.445Z] [INFO] [server stdout] [36m[INFO][0m 6:51:58 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:52:03.446Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:03.446Z] [INFO] [server stdout] [36m[INFO][0m 6:52:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:03.446Z] [INFO] Job status: queued (elapsed: 130.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:03.446Z] [INFO] [server stdout] [36m[INFO][0m 6:52:03 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:52:08.448Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:08.448Z] [INFO] [server stdout] [36m[INFO][0m 6:52:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:08.449Z] [INFO] Job status: queued (elapsed: 135.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:08.449Z] [INFO] [server stdout] [36m[INFO][0m 6:52:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:52:13.450Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:13.450Z] [INFO] [server stdout] [36m[INFO][0m 6:52:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:13.451Z] [INFO] Job status: queued (elapsed: 140.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:13.451Z] [INFO] [server stdout] [36m[INFO][0m 6:52:13 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:52:18.454Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:18.454Z] [INFO] [server stdout] [36m[INFO][0m 6:52:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:18.455Z] [INFO] Job status: queued (elapsed: 145.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:18.455Z] [INFO] [server stdout] [36m[INFO][0m 6:52:18 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:52:23.457Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:23.458Z] [INFO] [server stdout] [36m[INFO][0m 6:52:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:23.459Z] [INFO] Job status: queued (elapsed: 150.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:23.460Z] [INFO] [server stdout] [36m[INFO][0m 6:52:23 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:52:28.461Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:28.462Z] [INFO] [server stdout] [36m[INFO][0m 6:52:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:28.462Z] [INFO] Job status: queued (elapsed: 155.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:28.462Z] [INFO] [server stdout] [36m[INFO][0m 6:52:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:52:33.465Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:33.467Z] [INFO] [server stdout] [36m[INFO][0m 6:52:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:52:33 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:52:33.468Z] [INFO] Job status: queued (elapsed: 160.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:38.469Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:38.469Z] [INFO] [server stdout] [36m[INFO][0m 6:52:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:38.469Z] [INFO] Job status: queued (elapsed: 165.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:38.469Z] [INFO] [server stdout] [36m[INFO][0m 6:52:38 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:52:43.484Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:43.485Z] [INFO] [server stdout] [36m[INFO][0m 6:52:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:52:43 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:52:43.486Z] [INFO] Job status: queued (elapsed: 170.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:48.488Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:48.488Z] [INFO] [server stdout] [36m[INFO][0m 6:52:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:48.489Z] [INFO] Job status: queued (elapsed: 175.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:48.489Z] [INFO] [server stdout] [36m[INFO][0m 6:52:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:52:53.491Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:53.492Z] [INFO] [server stdout] [36m[INFO][0m 6:52:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:53.492Z] [INFO] Job status: queued (elapsed: 180.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:53.492Z] [INFO] [server stdout] [36m[INFO][0m 6:52:53 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:52:58.493Z] [INFO] [server stdout] [90m[DEBUG][0m 6:52:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:52:58.493Z] [INFO] [server stdout] [36m[INFO][0m 6:52:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:52:58.494Z] [INFO] Job status: queued (elapsed: 185.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:52:58.494Z] [INFO] [server stdout] [36m[INFO][0m 6:52:58 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:03.495Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:03.495Z] [INFO] [server stdout] [36m[INFO][0m 6:53:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:03.495Z] [INFO] Job status: queued (elapsed: 190.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:03.495Z] [INFO] [server stdout] [36m[INFO][0m 6:53:03 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:53:08.497Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:08.498Z] [INFO] [server stdout] [36m[INFO][0m 6:53:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:08.499Z] [INFO] Job status: queued (elapsed: 195.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:08.500Z] [INFO] [server stdout] [36m[INFO][0m 6:53:08 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:53:13.502Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:13.502Z] [INFO] [server stdout] [36m[INFO][0m 6:53:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:13.502Z] [INFO] Job status: queued (elapsed: 200.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:13.502Z] [INFO] [server stdout] [36m[INFO][0m 6:53:13 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:53:18.504Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:18.505Z] [INFO] [server stdout] [36m[INFO][0m 6:53:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:18.505Z] [INFO] Job status: queued (elapsed: 205.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:18.505Z] [INFO] [server stdout] [36m[INFO][0m 6:53:18 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:23.508Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:23.509Z] [INFO] [server stdout] [36m[INFO][0m 6:53:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:23.509Z] [INFO] Job status: queued (elapsed: 210.2s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:23.510Z] [INFO] [server stdout] [36m[INFO][0m 6:53:23 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:28.512Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:28.513Z] [INFO] [server stdout] [36m[INFO][0m 6:53:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:28.513Z] [INFO] Job status: queued (elapsed: 215.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:28.514Z] [INFO] [server stdout] [36m[INFO][0m 6:53:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:33.515Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:33.515Z] [INFO] [server stdout] [36m[INFO][0m 6:53:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:33.516Z] [INFO] Job status: queued (elapsed: 220.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:33.516Z] [INFO] [server stdout] [36m[INFO][0m 6:53:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:38.518Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:38.518Z] [INFO] [server stdout] [36m[INFO][0m 6:53:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:38.518Z] [INFO] Job status: queued (elapsed: 225.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:38.518Z] [INFO] [server stdout] [36m[INFO][0m 6:53:38 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:53:43.519Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:43.519Z] [INFO] [server stdout] [36m[INFO][0m 6:53:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:43.520Z] [INFO] Job status: queued (elapsed: 230.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:43.520Z] [INFO] [server stdout] [36m[INFO][0m 6:53:43 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:48.529Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:48.530Z] [INFO] [server stdout] [36m[INFO][0m 6:53:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:48.531Z] [INFO] Job status: queued (elapsed: 235.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:48.533Z] [INFO] [server stdout] [36m[INFO][0m 6:53:48 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:53:53.533Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:53.533Z] [INFO] [server stdout] [36m[INFO][0m 6:53:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:53.533Z] [INFO] Job status: queued (elapsed: 240.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:53.533Z] [INFO] [server stdout] [36m[INFO][0m 6:53:53 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:53:58.538Z] [INFO] [server stdout] [90m[DEBUG][0m 6:53:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:53:58.542Z] [INFO] [server stdout] [36m[INFO][0m 6:53:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:53:58.543Z] [INFO] Job status: queued (elapsed: 245.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:53:58.544Z] [INFO] [server stdout] [36m[INFO][0m 6:53:58 PM GET /api/jobs/job-1778971793233-1 200 5ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":5}
+[2026-05-16T22:54:03.545Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:03.545Z] [INFO] [server stdout] [36m[INFO][0m 6:54:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:03.545Z] [INFO] Job status: queued (elapsed: 250.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:03.546Z] [INFO] [server stdout] [36m[INFO][0m 6:54:03 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:54:08.549Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:08.550Z] [INFO] [server stdout] [36m[INFO][0m 6:54:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:08.551Z] [INFO] Job status: queued (elapsed: 255.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:08.551Z] [INFO] [server stdout] [36m[INFO][0m 6:54:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:13.552Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:13.552Z] [INFO] [server stdout] [36m[INFO][0m 6:54:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:13.553Z] [INFO] Job status: queued (elapsed: 260.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:13.553Z] [INFO] [server stdout] [36m[INFO][0m 6:54:13 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:18.554Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:18.554Z] [INFO] [server stdout] [36m[INFO][0m 6:54:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:18.554Z] [INFO] Job status: queued (elapsed: 265.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:18.554Z] [INFO] [server stdout] [36m[INFO][0m 6:54:18 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:54:23.555Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:23.556Z] [INFO] [server stdout] [36m[INFO][0m 6:54:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:23.556Z] [INFO] Job status: queued (elapsed: 270.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:23.556Z] [INFO] [server stdout] [36m[INFO][0m 6:54:23 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:28.557Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:28.558Z] [INFO] [server stdout] [36m[INFO][0m 6:54:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:28.558Z] [INFO] Job status: queued (elapsed: 275.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:28.559Z] [INFO] [server stdout] [36m[INFO][0m 6:54:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:33.561Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:33.561Z] [INFO] [server stdout] [36m[INFO][0m 6:54:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:33.562Z] [INFO] Job status: queued (elapsed: 280.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:33.562Z] [INFO] [server stdout] [36m[INFO][0m 6:54:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:38.572Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:38.574Z] [INFO] [server stdout] [36m[INFO][0m 6:54:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:38.575Z] [INFO] Job status: queued (elapsed: 285.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:38.575Z] [INFO] [server stdout] [36m[INFO][0m 6:54:38 PM GET /api/jobs/job-1778971793233-1 200 7ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":7}
+[2026-05-16T22:54:43.577Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:43.577Z] [INFO] [server stdout] [36m[INFO][0m 6:54:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:43.577Z] [INFO] Job status: queued (elapsed: 290.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:43.578Z] [INFO] [server stdout] [36m[INFO][0m 6:54:43 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:54:48.579Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:48.580Z] [INFO] [server stdout] [36m[INFO][0m 6:54:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:48.580Z] [INFO] Job status: queued (elapsed: 295.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:48.580Z] [INFO] [server stdout] [36m[INFO][0m 6:54:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:54:53.581Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:53.581Z] [INFO] [server stdout] [36m[INFO][0m 6:54:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:53.581Z] [INFO] Job status: queued (elapsed: 300.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:53.582Z] [INFO] [server stdout] [36m[INFO][0m 6:54:53 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:54:58.583Z] [INFO] [server stdout] [90m[DEBUG][0m 6:54:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:54:58.584Z] [INFO] [server stdout] [36m[INFO][0m 6:54:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:54:58.584Z] [INFO] Job status: queued (elapsed: 305.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:54:58.584Z] [INFO] [server stdout] [36m[INFO][0m 6:54:58 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:03.585Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:03.585Z] [INFO] [server stdout] [36m[INFO][0m 6:55:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:03.586Z] [INFO] Job status: queued (elapsed: 310.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:03.586Z] [INFO] [server stdout] [36m[INFO][0m 6:55:03 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:08.588Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:08.588Z] [INFO] [server stdout] [36m[INFO][0m 6:55:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:08.588Z] [INFO] Job status: queued (elapsed: 315.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:08.588Z] [INFO] [server stdout] [36m[INFO][0m 6:55:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:13.591Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:13.591Z] [INFO] [server stdout] [36m[INFO][0m 6:55:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:13.592Z] [INFO] Job status: queued (elapsed: 320.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:13.592Z] [INFO] [server stdout] [36m[INFO][0m 6:55:13 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:55:18.593Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:18.593Z] [INFO] [server stdout] [36m[INFO][0m 6:55:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:18.594Z] [INFO] Job status: queued (elapsed: 325.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:18.594Z] [INFO] [server stdout] [36m[INFO][0m 6:55:18 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:55:23.595Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:23.596Z] [INFO] [server stdout] [36m[INFO][0m 6:55:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:23.596Z] [INFO] Job status: queued (elapsed: 330.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:23.596Z] [INFO] [server stdout] [36m[INFO][0m 6:55:23 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:28.598Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:28.599Z] [INFO] [server stdout] [36m[INFO][0m 6:55:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:28.600Z] [INFO] Job status: queued (elapsed: 335.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:28.600Z] [INFO] [server stdout] [36m[INFO][0m 6:55:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:33.604Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:33.606Z] [INFO] [server stdout] [36m[INFO][0m 6:55:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:33.606Z] [INFO] Job status: queued (elapsed: 340.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:33.607Z] [INFO] [server stdout] [36m[INFO][0m 6:55:33 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:55:38.608Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:38.608Z] [INFO] [server stdout] [36m[INFO][0m 6:55:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:38.609Z] [INFO] Job status: queued (elapsed: 345.3s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:38.609Z] [INFO] [server stdout] [36m[INFO][0m 6:55:38 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:43.610Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:43.611Z] [INFO] [server stdout] [36m[INFO][0m 6:55:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:43.611Z] [INFO] Job status: queued (elapsed: 350.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:43.611Z] [INFO] [server stdout] [36m[INFO][0m 6:55:43 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:48.612Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:48.612Z] [INFO] [server stdout] [36m[INFO][0m 6:55:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:48.613Z] [INFO] Job status: queued (elapsed: 355.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:48.613Z] [INFO] [server stdout] [36m[INFO][0m 6:55:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:53.614Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:53.614Z] [INFO] [server stdout] [36m[INFO][0m 6:55:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:53.615Z] [INFO] Job status: queued (elapsed: 360.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:53.615Z] [INFO] [server stdout] [36m[INFO][0m 6:55:53 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:55:58.616Z] [INFO] [server stdout] [90m[DEBUG][0m 6:55:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:55:58.616Z] [INFO] [server stdout] [36m[INFO][0m 6:55:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:55:58.616Z] [INFO] Job status: queued (elapsed: 365.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:55:58.616Z] [INFO] [server stdout] [36m[INFO][0m 6:55:58 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:56:03.625Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:03.626Z] [INFO] [server stdout] [36m[INFO][0m 6:56:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:03.628Z] [INFO] Job status: queued (elapsed: 370.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:03.630Z] [INFO] [server stdout] [36m[INFO][0m 6:56:03 PM GET /api/jobs/job-1778971793233-1 200 8ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":8}
+[2026-05-16T22:56:08.629Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:08.629Z] [INFO] [server stdout] [36m[INFO][0m 6:56:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:08.630Z] [INFO] Job status: queued (elapsed: 375.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:08.630Z] [INFO] [server stdout] [36m[INFO][0m 6:56:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:13.635Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:13.636Z] [INFO] [server stdout] [36m[INFO][0m 6:56:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:13.638Z] [INFO] Job status: queued (elapsed: 380.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:13.638Z] [INFO] [server stdout] [36m[INFO][0m 6:56:13 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:56:18.641Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:18.641Z] [INFO] [server stdout] [36m[INFO][0m 6:56:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:18.642Z] [INFO] Job status: queued (elapsed: 385.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:18.642Z] [INFO] [server stdout] [36m[INFO][0m 6:56:18 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:56:23.643Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:23.643Z] [INFO] [server stdout] [36m[INFO][0m 6:56:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:23.644Z] [INFO] Job status: queued (elapsed: 390.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:23.644Z] [INFO] [server stdout] [36m[INFO][0m 6:56:23 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:28.646Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:28.646Z] [INFO] [server stdout] [36m[INFO][0m 6:56:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:28.647Z] [INFO] Job status: queued (elapsed: 395.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:28.647Z] [INFO] [server stdout] [36m[INFO][0m 6:56:28 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:56:33.648Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:33.648Z] [INFO] [server stdout] [36m[INFO][0m 6:56:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:33.649Z] [INFO] Job status: queued (elapsed: 400.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:33.649Z] [INFO] [server stdout] [36m[INFO][0m 6:56:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:38.658Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[36m[INFO][0m 6:56:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:56:38 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:38.658Z] [INFO] Job status: queued (elapsed: 405.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:43.661Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:43.661Z] [INFO] [server stdout] [36m[INFO][0m 6:56:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:43.662Z] [INFO] Job status: queued (elapsed: 410.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:43.662Z] [INFO] [server stdout] [36m[INFO][0m 6:56:43 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:48.663Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:48.663Z] [INFO] [server stdout] [36m[INFO][0m 6:56:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:48.664Z] [INFO] Job status: queued (elapsed: 415.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:48.664Z] [INFO] [server stdout] [36m[INFO][0m 6:56:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:56:53.672Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:53.677Z] [INFO] [server stdout] [36m[INFO][0m 6:56:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:56:53 PM GET /api/jobs/job-1778971793233-1 200 4ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":4}
+[2026-05-16T22:56:53.678Z] [INFO] Job status: queued (elapsed: 420.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:58.680Z] [INFO] [server stdout] [90m[DEBUG][0m 6:56:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:56:58.681Z] [INFO] [server stdout] [36m[INFO][0m 6:56:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:56:58.681Z] [INFO] Job status: queued (elapsed: 425.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:56:58.681Z] [INFO] [server stdout] [36m[INFO][0m 6:56:58 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:57:03.683Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:03.683Z] [INFO] [server stdout] [36m[INFO][0m 6:57:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:03.683Z] [INFO] Job status: queued (elapsed: 430.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:03.683Z] [INFO] [server stdout] [36m[INFO][0m 6:57:03 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:57:08.685Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:08.685Z] [INFO] [server stdout] [36m[INFO][0m 6:57:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:08.686Z] [INFO] Job status: queued (elapsed: 435.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:08.686Z] [INFO] [server stdout] [36m[INFO][0m 6:57:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:57:13.688Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:13.688Z] [INFO] [server stdout] [36m[INFO][0m 6:57:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:13.689Z] [INFO] Job status: queued (elapsed: 440.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:13.689Z] [INFO] [server stdout] [36m[INFO][0m 6:57:13 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:57:18.691Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:18.691Z] [INFO] [server stdout] [36m[INFO][0m 6:57:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:18.693Z] [INFO] Job status: queued (elapsed: 445.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:18.693Z] [INFO] [server stdout] [36m[INFO][0m 6:57:18 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:57:23.705Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:23.708Z] [INFO] [server stdout] [36m[INFO][0m 6:57:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:57:23 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:57:23.708Z] [INFO] Job status: queued (elapsed: 450.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:28.714Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:28.715Z] [INFO] [server stdout] [36m[INFO][0m 6:57:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:28.718Z] [INFO] Job status: queued (elapsed: 455.4s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:28.718Z] [INFO] [server stdout] [36m[INFO][0m 6:57:28 PM GET /api/jobs/job-1778971793233-1 200 4ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":4}
+[2026-05-16T22:57:33.728Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:33.728Z] [INFO] [server stdout] [36m[INFO][0m 6:57:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:33.731Z] [INFO] Job status: queued (elapsed: 460.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:33.732Z] [INFO] [server stdout] [36m[INFO][0m 6:57:33 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:57:38.736Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:38.739Z] [INFO] [server stdout] [36m[INFO][0m 6:57:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:38.740Z] [INFO] Job status: queued (elapsed: 465.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:38.740Z] [INFO] [server stdout] [36m[INFO][0m 6:57:38 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:57:43.744Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:43.745Z] [INFO] [server stdout] [36m[INFO][0m 6:57:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:43.748Z] [INFO] Job status: queued (elapsed: 470.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:43.749Z] [INFO] [server stdout] [36m[INFO][0m 6:57:43 PM GET /api/jobs/job-1778971793233-1 200 6ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":6}
+[2026-05-16T22:57:48.751Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:48.751Z] [INFO] [server stdout] [36m[INFO][0m 6:57:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:48.753Z] [INFO] Job status: queued (elapsed: 475.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:48.754Z] [INFO] [server stdout] [36m[INFO][0m 6:57:48 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:57:53.756Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:53.756Z] [INFO] [server stdout] [36m[INFO][0m 6:57:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:57:53.757Z] [INFO] Job status: queued (elapsed: 480.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:57:53.757Z] [INFO] [server stdout] [36m[INFO][0m 6:57:53 PM GET /api/jobs/job-1778971793233-1 200 0ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":0}
+[2026-05-16T22:57:58.762Z] [INFO] [server stdout] [90m[DEBUG][0m 6:57:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:57:58.764Z] [INFO] [server stdout] [36m[INFO][0m 6:57:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:57:58 PM GET /api/jobs/job-1778971793233-1 200 3ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":3}
+[2026-05-16T22:57:58.766Z] [INFO] Job status: queued (elapsed: 485.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:03.773Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:03.779Z] [INFO] [server stdout] [36m[INFO][0m 6:58:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:03.780Z] [INFO] Job status: queued (elapsed: 490.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:03.780Z] [INFO] [server stdout] [36m[INFO][0m 6:58:03 PM GET /api/jobs/job-1778971793233-1 200 6ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":6}
+[2026-05-16T22:58:08.788Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:08.792Z] [INFO] [server stdout] [36m[INFO][0m 6:58:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:08.795Z] [INFO] Job status: queued (elapsed: 495.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:08.795Z] [INFO] [server stdout] [36m[INFO][0m 6:58:08 PM GET /api/jobs/job-1778971793233-1 200 6ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":6}
+[2026-05-16T22:58:13.799Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:13.802Z] [INFO] [server stdout] [36m[INFO][0m 6:58:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:58:13 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:58:13.803Z] [INFO] Job status: queued (elapsed: 500.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:18.805Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:18.806Z] [INFO] [server stdout] [36m[INFO][0m 6:58:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:18.806Z] [INFO] Job status: queued (elapsed: 505.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:18.807Z] [INFO] [server stdout] [36m[INFO][0m 6:58:18 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:58:23.810Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:23.811Z] [INFO] [server stdout] [36m[INFO][0m 6:58:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:23.813Z] [INFO] [server stdout] [36m[INFO][0m 6:58:23 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:58:23.813Z] [INFO] Job status: queued (elapsed: 510.5s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:28.817Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:28.817Z] [INFO] [server stdout] [36m[INFO][0m 6:58:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:28.818Z] [INFO] Job status: queued (elapsed: 515.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:28.818Z] [INFO] [server stdout] [36m[INFO][0m 6:58:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:58:33.820Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:33.830Z] [INFO] [server stdout] [36m[INFO][0m 6:58:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:33.830Z] [INFO] [server stdout] [36m[INFO][0m 6:58:33 PM GET /api/jobs/job-1778971793233-1 200 8ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":8}
+[2026-05-16T22:58:33.831Z] [INFO] Job status: queued (elapsed: 520.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:38.838Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:38.849Z] [INFO] [server stdout] [36m[INFO][0m 6:58:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:38.850Z] [INFO] Job status: queued (elapsed: 525.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:38.850Z] [INFO] [server stdout] [36m[INFO][0m 6:58:38 PM GET /api/jobs/job-1778971793233-1 200 11ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":11}
+[2026-05-16T22:58:43.857Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:43.858Z] [INFO] [server stdout] [36m[INFO][0m 6:58:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:43.859Z] [INFO] Job status: queued (elapsed: 530.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:43.859Z] [INFO] [server stdout] [36m[INFO][0m 6:58:43 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:58:48.867Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:48.867Z] [INFO] [server stdout] [36m[INFO][0m 6:58:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:48.870Z] [INFO] Job status: queued (elapsed: 535.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:48.870Z] [INFO] [server stdout] [36m[INFO][0m 6:58:48 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:58:53.872Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:53.873Z] [INFO] [server stdout] [36m[INFO][0m 6:58:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:53.874Z] [INFO] Job status: queued (elapsed: 540.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:53.874Z] [INFO] [server stdout] [36m[INFO][0m 6:58:53 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:58:58.881Z] [INFO] [server stdout] [90m[DEBUG][0m 6:58:58 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:58:58.882Z] [INFO] [server stdout] [36m[INFO][0m 6:58:58 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:58:58.882Z] [INFO] Job status: queued (elapsed: 545.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:58:58.883Z] [INFO] [server stdout] [36m[INFO][0m 6:58:58 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:59:03.886Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:03 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:03.887Z] [INFO] [server stdout] [36m[INFO][0m 6:59:03 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:03.888Z] [INFO] Job status: queued (elapsed: 550.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:03.888Z] [INFO] [server stdout] [36m[INFO][0m 6:59:03 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:08.904Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:08 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[36m[INFO][0m 6:59:08 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[36m[INFO][0m 6:59:08 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:59:08.905Z] [INFO] Job status: queued (elapsed: 555.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:13.910Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:13 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:13.911Z] [INFO] [server stdout] [36m[INFO][0m 6:59:13 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:13.912Z] [INFO] Job status: queued (elapsed: 560.6s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:13.913Z] [INFO] [server stdout] [36m[INFO][0m 6:59:13 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:18.919Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:18 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:18.919Z] [INFO] [server stdout] [36m[INFO][0m 6:59:18 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:18.920Z] [INFO] [server stdout] [36m[INFO][0m 6:59:18 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:18.921Z] [INFO] Job status: queued (elapsed: 565.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:23.924Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:23 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:23.924Z] [INFO] [server stdout] [36m[INFO][0m 6:59:23 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:23.926Z] [INFO] Job status: queued (elapsed: 570.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:23.926Z] [INFO] [server stdout] [36m[INFO][0m 6:59:23 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:28.927Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:28 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:28.928Z] [INFO] [server stdout] [36m[INFO][0m 6:59:28 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:28.928Z] [INFO] Job status: queued (elapsed: 575.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:28.928Z] [INFO] [server stdout] [36m[INFO][0m 6:59:28 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:59:33.930Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:33 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:33.930Z] [INFO] [server stdout] [36m[INFO][0m 6:59:33 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:33.931Z] [INFO] Job status: queued (elapsed: 580.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:33.931Z] [INFO] [server stdout] [36m[INFO][0m 6:59:33 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:59:38.934Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:38 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:38.934Z] [INFO] [server stdout] [36m[INFO][0m 6:59:38 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:38.935Z] [INFO] Job status: queued (elapsed: 585.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:38.936Z] [INFO] [server stdout] [36m[INFO][0m 6:59:38 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:43.938Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:43 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:43.938Z] [INFO] [server stdout] [36m[INFO][0m 6:59:43 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:43.938Z] [INFO] Job status: queued (elapsed: 590.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:43.938Z] [INFO] [server stdout] [36m[INFO][0m 6:59:43 PM GET /api/jobs/job-1778971793233-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":1}
+[2026-05-16T22:59:48.942Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:48 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:48.943Z] [INFO] [server stdout] [36m[INFO][0m 6:59:48 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:48.944Z] [INFO] Job status: queued (elapsed: 595.7s)
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:48.944Z] [INFO] [server stdout] [36m[INFO][0m 6:59:48 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:53.944Z] [ERROR] Job polling timed out
+{
+  "jobId": "job-1778971793233-1",
+  "timeoutMs": 600000
+}
+[2026-05-16T22:59:53.944Z] [ERROR] Pipeline did not complete successfully
+[2026-05-16T22:59:53.944Z] [STEP] Checking database for job record
+[2026-05-16T22:59:53.946Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:53 PM GET /api/jobs/job-1778971793233-1 {"method":"GET","path":"/api/jobs/job-1778971793233-1"}
+[2026-05-16T22:59:53.947Z] [INFO] [server stdout] [36m[INFO][0m 6:59:53 PM Fetched job {"jobId":"job-1778971793233-1","status":"queued"}
+[2026-05-16T22:59:53.948Z] [INFO] Database job record found
+{
+  "body": {
+    "id": "job-1778971793233-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:49:53.233Z",
+    "updatedAt": "2026-05-16T22:49:53.233Z"
+  }
+}
+[2026-05-16T22:59:53.948Z] [STEP] Listing all jobs
+[2026-05-16T22:59:53.948Z] [INFO] [server stdout] [36m[INFO][0m 6:59:53 PM GET /api/jobs/job-1778971793233-1 200 2ms {"method":"GET","path":"/api/jobs/job-1778971793233-1","status":200,"duration":2}
+[2026-05-16T22:59:53.949Z] [INFO] [server stdout] [90m[DEBUG][0m 6:59:53 PM GET /api/jobs {"method":"GET","path":"/api/jobs"}
+[2026-05-16T22:59:53.950Z] [INFO] [server stdout] [36m[INFO][0m 6:59:53 PM Fetched all jobs {"count":1}
+[2026-05-16T22:59:53.951Z] [INFO] Found 1 jobs in database
+[2026-05-16T22:59:53.951Z] [INFO]   - job-1778971793233-1: processing (The Fall of the Roman Empire)
+[2026-05-16T22:59:53.951Z] [INFO] ============================================================
+[2026-05-16T22:59:53.951Z] [INFO] TEST SUMMARY
+[2026-05-16T22:59:53.951Z] [INFO] ============================================================
+[2026-05-16T22:59:53.951Z] [INFO]   [PASS] Server startup - Server started successfully
+[2026-05-16T22:59:53.951Z] [INFO]   [PASS] Health check
+[2026-05-16T22:59:53.951Z] [INFO]   [PASS] Job submission - job-1778971793233-1
+[2026-05-16T22:59:53.951Z] [INFO]   [FAIL] Pipeline execution - Status: timeout
+[2026-05-16T22:59:53.951Z] [INFO]   [FAIL] Video file validation - No video path returned
+[2026-05-16T22:59:53.951Z] [INFO]   [PASS] Database record
+[2026-05-16T22:59:53.951Z] [INFO] 
+[2026-05-16T22:59:53.951Z] [INFO] Total: 6 | Passed: 4 | Failed: 2
+[2026-05-16T22:59:53.951Z] [INFO] Log file: /home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T22-49-49-187Z.log
+[2026-05-16T22:59:53.951Z] [INFO] Stopping server...
+[2026-05-16T22:59:53.952Z] [INFO] [server stdout] [36m[INFO][0m 6:59:53 PM GET /api/jobs 200 1ms {"method":"GET","path":"/api/jobs","status":200,"duration":1}
+[2026-05-16T22:59:53.994Z] [INFO] Server stopped

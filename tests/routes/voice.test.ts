@@ -98,7 +98,7 @@ describe('Voice Routes', () => {
         .send({});
 
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe('jobId is required');
+      expect(response.body.error).toBe('Invalid request');
     });
 
     it('returns 404 when job not found', async () => {

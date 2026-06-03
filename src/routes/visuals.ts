@@ -1,4 +1,5 @@
 import { Router, Request, Response } from 'express';
+import { z } from 'zod';
 import { searchImages } from '../visuals/wikimedia';
 import { searchVideos } from '../visuals/pexels';
 import { matchVisuals } from '../visuals/matcher';
@@ -6,15 +7,16 @@ import { downloadAssets } from '../visuals/downloader';
 import { getJob, updateJobStatus } from '../db';
 import { getConfig } from '../config';
 import { info, warn, error } from '../utils/logger';
+import { validateRequest } from '../middleware/validate';
+
+const generateVisualsSchema = z.object({
+  jobId: z.string().min(1),
+});
 
 const router: Router = Router();
 
-router.post('/api/visuals/generate', async (req: Request, res: Response) => {
+router.post('/api/visuals/generate', validateRequest(generateVisualsSchema), async (req: Request, res: Response) => {
   const { jobId } = req.body;
-
-  if (!jobId) {
-    return res.status(400).json({ error: 'jobId is required' });
-  }
 
   try {
     const job = getJob(jobId);

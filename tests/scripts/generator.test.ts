@@ -40,7 +40,7 @@ describe('ScriptGenerator', () => {
       expect(result.tokensUsed).toBe(500);
     });
 
-    it('uses gpt-4o-mini by default', async () => {
+    it('uses gpt-5.4-mini by default', async () => {
       mockCreate.mockResolvedValue({
         choices: [{ message: { content: JSON.stringify(mockValidScript()) } }],
         usage: { total_tokens: 100 },
@@ -49,7 +49,7 @@ describe('ScriptGenerator', () => {
       await generator.generateScript('Test');
 
       expect(mockCreate).toHaveBeenCalledWith(
-        expect.objectContaining({ model: 'gpt-4o-mini' })
+        expect.objectContaining({ model: 'gpt-5.4-mini' })
       );
     });
 

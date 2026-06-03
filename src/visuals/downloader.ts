@@ -4,6 +4,10 @@ import crypto from 'crypto';
 
 const CACHE_DIR = path.join(process.cwd(), 'data', 'cache');
 
+const ALLOWED_IMAGE_EXTENSIONS = new Set([
+  '.jpg', '.jpeg', '.png', '.webp', '.tiff', '.tif', '.bmp',
+]);
+
 export interface CachedAsset {
   localPath: string;
   originalUrl: string;
@@ -15,7 +19,12 @@ export async function downloadAsset(url: string, filename?: string): Promise<Cac
   }
 
   const hash = crypto.createHash('md5').update(url).digest('hex');
-  const ext = path.extname(new URL(url).pathname) || '.jpg';
+  const ext = path.extname(new URL(url).pathname).toLowerCase() || '.jpg';
+
+  if (!ALLOWED_IMAGE_EXTENSIONS.has(ext)) {
+    throw new Error(`Unsupported file type: ${ext}`);
+  }
+
   const cachedName = filename || `${hash}${ext}`;
   const localPath = path.join(CACHE_DIR, cachedName);
 

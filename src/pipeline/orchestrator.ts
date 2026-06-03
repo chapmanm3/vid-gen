@@ -10,12 +10,13 @@ import { Script } from '../scripts/types';
 import { getConfig } from '../config';
 import { getJob, updateJobStatus } from '../db';
 import path from 'path';
+import { info, error } from '../utils/logger';
 
 export type PipelineStatus =
   | 'queued'
   | 'generating_script'
   | 'generating_voice'
-  | 'fetching_visualuals'
+  | 'fetching_visuals'
   | 'rendering_video'
   | 'completed'
   | 'failed';
@@ -36,13 +37,14 @@ export class PipelineOrchestrator {
 
   async run(jobId: string, topic: string): Promise<PipelineResult> {
     try {
-      // Step 1: Generate script
+      info('[pipeline] Step 1: Generating script', { jobId, topic });
       updateJobStatus(jobId, 'processing');
       const scriptGenerator = new ScriptGenerator(this.config.OPENAI_API_KEY);
       const { script } = await scriptGenerator.generateScript(topic);
+      info('[pipeline] Script generated', { jobId, segments: script.segments.length });
       updateJobStatus(jobId, 'processing', { script: JSON.stringify(script) });
 
-      // Step 2: Generate voice
+      info('[pipeline] Step 2: Generating voice', { jobId });
       const voiceGenerator = new VoiceGenerator({
         apiKey: this.config.OPENAI_API_KEY,
         voice: this.config.OPENAI_TTS_VOICE,
@@ -53,8 +55,10 @@ export class PipelineOrchestrator {
       const audioDir = path.join(process.cwd(), 'data', 'audio', jobId);
       const audioPipeline = new ScriptToAudio(voiceGenerator, audioDir);
       const audioResult = await audioPipeline.process(script);
+      info('[pipeline] Voice generated', { jobId, audioPath: audioResult.concatenatedPath, duration: audioResult.totalDuration });
 
       // Step 3: Fetch visuals
+      info('[pipeline] Step 3: Fetching visuals', { jobId });
       const keywords = script.segments.flatMap((s) => s.keywords).slice(0, 5);
       const uniqueKeywords = [...new Set(keywords)];
 
@@ -67,8 +71,10 @@ export class PipelineOrchestrator {
 
       const imageList = images.status === 'fulfilled' ? images.value : [];
       const videoList = videos.status === 'fulfilled' ? videos.value : [];
+      info('[pipeline] Visuals fetched', { jobId, images: imageList.length, videos: videoList.length });
 
       const visualPlan = matchVisuals(script.segments, imageList, videoList);
+      info('[pipeline] Visuals matched', { jobId, planSize: visualPlan.length });
 
       const urlsToDownload = [
         ...visualPlan.filter((v) => v.image).map((v) => v.image!.url),
@@ -76,6 +82,7 @@ export class PipelineOrchestrator {
       ];
 
       const downloaded = await downloadAssets(urlsToDownload);
+      info('[pipeline] Assets downloaded', { jobId, count: downloaded.length });
 
       const planWithPaths = visualPlan.map((vp) => ({
         segment: vp.segment,
@@ -84,10 +91,13 @@ export class PipelineOrchestrator {
       }));
 
       // Step 4: Render video
+      info('[pipeline] Step 4: Rendering video', { jobId });
       const renderer = new VideoRenderer();
       const videoResult = await renderer.render(script, audioResult.concatenatedPath, planWithPaths);
+      info('[pipeline] Video rendered', { jobId, videoPath: videoResult.videoPath });
 
       // Step 5: Complete
+      info('[pipeline] Step 5: Marking complete', { jobId });
       updateJobStatus(jobId, 'completed', { videoPath: videoResult.videoPath });
 
       return {
@@ -95,8 +105,10 @@ export class PipelineOrchestrator {
         status: 'completed',
         videoPath: videoResult.videoPath,
       };
-    } catch (error) {
-      const message = error instanceof Error ? error.message : 'Unknown error';
+    } catch (err) {
+      const message = err instanceof Error ? err.message : 'Unknown error';
+      const stack = err instanceof Error ? err.stack : '';
+      error('[pipeline] Pipeline failed', { jobId, message, stack });
       updateJobStatus(jobId, 'failed', { error: `Pipeline failed: ${message}` });
 
       return {

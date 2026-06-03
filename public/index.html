@@ -33,6 +33,11 @@
     .error-msg { color: #ff6b6b; font-size: 0.875rem; margin-top: 0.5rem; }
     .video-link { color: #3ea6ff; text-decoration: none; }
     .video-link:hover { text-decoration: underline; }
+    .retry-btn { background: transparent; border: 1px solid #cc0000; color: #ff6b6b; padding: 0.25rem 0.75rem; font-size: 0.75rem; border-radius: 6px; cursor: pointer; }
+    .retry-btn:hover { background: #cc0000; color: #fff; }
+    .retry-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .retry-count { font-size: 0.7rem; color: #888; }
+    .job-header { display: flex; justify-content: space-between; align-items: center; }
   </style>
 </head>
 <body>
@@ -53,7 +58,10 @@
 
     <div class="header">
       <h2 style="font-size:1.25rem;">Jobs</h2>
-      <button class="refresh-btn" id="refresh-btn">Refresh</button>
+      <div style="display:flex;gap:0.75rem;">
+        <a href="/scripts.html" style="color:#3ea6ff;text-decoration:none;padding:0.5rem 1rem;border:1px solid #444;border-radius:8px;font-size:0.875rem;">View Scripts</a>
+        <button class="refresh-btn" id="refresh-btn">Refresh</button>
+      </div>
     </div>
 
     <div id="job-list" class="job-list">
@@ -117,17 +125,25 @@
         return;
       }
 
-      jobList.innerHTML = jobs.map(job => `
+      jobList.innerHTML = jobs.map(job => {
+        const retryCount = job.retryCount || 0;
+        return `
         <div class="job-item ${job.status}">
-          <div class="job-topic">${escapeHtml(job.topic || 'Untitled')}</div>
-          <div class="job-status">${job.status}</div>
+          <div class="job-header">
+            <div class="job-topic">${escapeHtml(job.topic || 'Untitled')}</div>
+            <div>
+              <span class="job-status">${job.status}${retryCount > 0 ? ` <span class="retry-count">(retry ${retryCount})</span>` : ''}</span>
+              ${job.status === 'failed' ? `<button class="retry-btn" onclick="retryJob('${job.id}', this)">Retry</button>` : ''}
+            </div>
+          </div>
           <div class="job-meta">
             ID: ${job.id} | Created: ${formatDate(job.createdAt)}
             ${job.status === 'completed' && job.videoPath ? ` | <a href="${job.videoPath}" class="video-link" download>Download Video</a>` : ''}
             ${job.status === 'failed' && job.error ? ` | Error: ${escapeHtml(job.error)}` : ''}
           </div>
         </div>
-      `).join('');
+      `;
+      }).join('');
     }
 
     function escapeHtml(str) {
@@ -149,9 +165,33 @@
 
     refreshBtn.addEventListener('click', fetchJobs);
 
-    // Initial load and auto-refresh every 5 seconds
-    fetchJobs();
-    setInterval(fetchJobs, 5000);
+    async function retryJob(jobId, btn) {
+      btn.disabled = true;
+      btn.textContent = 'Retrying...';
+
+      try {
+        const res = await fetch(`/api/jobs/${jobId}/retry`, { method: 'POST' });
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || 'Retry failed');
+        }
+        await fetchJobs();
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Retry';
+        console.error('Retry failed:', err);
+      }
+    }
+
+    const evtSource = new EventSource('/api/jobs/events');
+    evtSource.onmessage = (e) => {
+      try {
+        renderJobs(JSON.parse(e.data));
+      } catch {}
+    };
+    evtSource.onerror = () => {
+      // Browser auto-reconnects; fall back to a manual refresh on sustained failure
+    };
   </script>
 </body>
 </html>

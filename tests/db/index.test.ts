@@ -7,6 +7,7 @@ import {
   getJob,
   updateJobStatus,
   resetDatabase,
+  resetJobForRetry,
   Job,
 } from '../../src/db';
 
@@ -140,6 +141,39 @@ describe('Database', () => {
 
       const retrieved = getJob(id('lifecycle'));
       expect(retrieved!.status).toBe('completed');
+    });
+  });
+
+  describe('resetJobForRetry', () => {
+    it('resets status to pending', () => {
+      createJob(id('retry1'), 'Retry test');
+      updateJobStatus(id('retry1'), 'failed', { error: 'Test error' });
+
+      const reset = resetJobForRetry(id('retry1'));
+      expect(reset!.status).toBe('pending');
+    });
+
+    it('clears error field', () => {
+      createJob(id('retry2'), 'Clear error');
+      updateJobStatus(id('retry2'), 'failed', { error: 'Something broke' });
+
+      const reset = resetJobForRetry(id('retry2'));
+      expect(reset!.error).toBe(null);
+    });
+
+    it('increments retryCount', () => {
+      createJob(id('retry3'), 'Count test');
+      updateJobStatus(id('retry3'), 'failed', { error: 'Error' });
+
+      resetJobForRetry(id('retry3'));
+
+      const job = getJob(id('retry3'));
+      expect(job!.retryCount).toBe(1);
+    });
+
+    it('returns null for non-existent job', () => {
+      const result = resetJobForRetry(id('nonexistent'));
+      expect(result).toBe(null);
     });
   });
 });

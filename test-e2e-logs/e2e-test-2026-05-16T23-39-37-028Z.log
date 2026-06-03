@@ -1,0 +1,42 @@
+[2026-05-16T23:39:37.029Z] [INFO] ============================================================
+[2026-05-16T23:39:37.030Z] [INFO] E2E Video Creation Test
+[2026-05-16T23:39:37.030Z] [INFO] ============================================================
+[2026-05-16T23:39:37.030Z] [INFO] Configuration
+{
+  "baseUrl": "http://localhost:3000",
+  "topic": "The Fall of the Roman Empire",
+  "pollInterval": "5000ms",
+  "pollTimeout": "600000ms",
+  "startServer": true,
+  "logFile": "/home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T23-39-37-028Z.log"
+}
+[2026-05-16T23:39:37.030Z] [STEP] Starting server
+[2026-05-16T23:39:37.030Z] [INFO] Starting server...
+[2026-05-16T23:39:37.047Z] [INFO] Server not ready yet, retrying (1/30)...
+[2026-05-16T23:39:38.890Z] [ERROR] [server stderr] /home/matt/vid-gen/src/config/index.ts:26
+      throw new Error(`Invalid environment configuration:\n${errors}`);
+            ^
+[2026-05-16T23:39:38.890Z] [ERROR] [server stderr] Error: Invalid environment configuration:
+  - OPENAI_API_KEY: Invalid input: expected string, received undefined
+    at getConfig (/home/matt/vid-gen/src/config/index.ts:26:13)
+    at Object.<anonymous> (/home/matt/vid-gen/src/server.ts:6:25)
+    at Module._compile (node:internal/modules/cjs/loader:1734:14)
+    at Module.m._compile (/home/matt/vid-gen/node_modules/.pnpm/ts-node@10.9.2_@types+node@25.8.0_typescript@6.0.3/node_modules/ts-node/src/index.ts:1618:23)
+    at loadTS (node:internal/modules/cjs/loader:1826:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/matt/vid-gen/node_modules/.pnpm/ts-node@10.9.2_@types+node@25.8.0_typescript@6.0.3/node_modules/ts-node/src/index.ts:1621:12)
+    at Module.load (node:internal/modules/cjs/loader:1469:32)
+    at Function._load (node:internal/modules/cjs/loader:1286:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:235:24)
+[2026-05-16T23:39:38.920Z] [ERROR] Server exited unexpectedly
+{
+  "code": 1,
+  "signal": null
+}
+[2026-05-16T23:39:39.051Z] [INFO] Server not ready yet, retrying (2/30)...
+[2026-05-16T23:39:41.054Z] [INFO] Server not ready yet, retrying (3/30)...
+[2026-05-16T23:39:43.058Z] [INFO] Server not ready yet, retrying (4/30)...
+[2026-05-16T23:39:45.063Z] [INFO] Server not ready yet, retrying (5/30)...
+[2026-05-16T23:39:47.067Z] [INFO] Server not ready yet, retrying (6/30)...
+[2026-05-16T23:39:49.072Z] [INFO] Server not ready yet, retrying (7/30)...
+[2026-05-16T23:39:51.074Z] [INFO] Server not ready yet, retrying (8/30)...

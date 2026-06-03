@@ -11,7 +11,7 @@ export class ScriptGenerator {
   private client: OpenAI;
   private model: string;
 
-  constructor(apiKey: string, model = 'gpt-4o-mini') {
+  constructor(apiKey: string, model = 'gpt-5.4-mini') {
     this.client = new OpenAI({ apiKey });
     this.model = model;
   }
@@ -26,7 +26,7 @@ export class ScriptGenerator {
         { role: 'user', content: prompt.user },
       ],
       temperature: 0.8,
-      max_tokens: 4000,
+      max_completion_tokens: 4000,
       response_format: { type: 'json_object' },
     });
 

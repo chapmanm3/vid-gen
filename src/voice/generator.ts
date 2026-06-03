@@ -7,7 +7,7 @@ export type VoiceId = 'alloy' | 'echo' | 'fable' | 'onyx' | 'nova' | 'shimmer';
 export interface TTSConfig {
   apiKey: string;
   voice: VoiceId;
-  model: 'tts-1' | 'tts-1-hd';
+  model: 'tts-1' | 'tts-1-hd' | 'gpt-4o-mini-tts';
   speed: number;
 }
 

@@ -1,16 +1,12 @@
-let idCounter = 0;
-
-function generateId(): string {
-  idCounter++;
-  return `job-${Date.now()}-${idCounter}`;
-}
-import { createJob, getJob, updateJobStatus, Job } from '../db';
+import { v4 as uuidv4 } from 'uuid';
+import { createJob, getJob, updateJobStatus, resetJobForRetry, Job } from '../db';
 
 export interface QueueJob {
   id: string;
   status: 'queued' | 'processing' | 'completed' | 'failed';
   topic?: string;
   data?: Record<string, unknown>;
+  retryCount?: number;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -24,13 +20,18 @@ export function setHandler(h: JobHandler): void {
   handler = h;
 }
 
+export function clearHandler(): void {
+  handler = null;
+}
+
 export function enqueue(topic?: string, data?: Record<string, unknown>): string {
-  const id = generateId();
+  const id = uuidv4();
   const job: QueueJob = {
     id,
     status: 'queued',
     topic,
     data,
+    retryCount: 0,
     createdAt: new Date(),
     updatedAt: new Date(),
   };
@@ -110,4 +111,39 @@ async function processNext(): Promise<void> {
 
 export function clear(): void {
   jobs.clear();
+}
+
+export function retryJob(id: string): QueueJob | null {
+  const job = jobs.get(id);
+  if (!job) {
+    const dbJob = getJob(id);
+    if (!dbJob || dbJob.status !== 'failed') return null;
+
+    resetJobForRetry(id);
+    const updatedDbJob = getJob(id)!;
+
+    const newJob: QueueJob = {
+      id: dbJob.id,
+      status: 'queued',
+      topic: dbJob.topic || undefined,
+      retryCount: updatedDbJob.retryCount,
+      createdAt: new Date(dbJob.createdAt),
+      updatedAt: new Date(),
+    };
+    jobs.set(id, newJob);
+    processNext();
+    return newJob;
+  }
+
+  if (job.status !== 'failed') return null;
+
+  resetJobForRetry(id);
+  const updatedDbJob = getJob(id)!;
+
+  job.status = 'queued';
+  job.retryCount = updatedDbJob.retryCount;
+  job.updatedAt = new Date();
+  jobs.set(id, job);
+  processNext();
+  return { ...job };
 }

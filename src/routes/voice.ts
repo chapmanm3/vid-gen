@@ -1,19 +1,21 @@
 import { Router, Request, Response } from 'express';
+import { z } from 'zod';
 import { VoiceGenerator } from '../voice/generator';
 import { ScriptToAudio } from '../voice/pipeline';
 import { getConfig } from '../config';
 import { getJob, updateJobStatus } from '../db';
 import path from 'path';
 import { info, error } from '../utils/logger';
+import { validateRequest } from '../middleware/validate';
+
+const generateVoiceSchema = z.object({
+  jobId: z.string().min(1),
+});
 
 const router: Router = Router();
 
-router.post('/api/voice/generate', async (req: Request, res: Response) => {
+router.post('/api/voice/generate', validateRequest(generateVoiceSchema), async (req: Request, res: Response) => {
   const { jobId } = req.body;
-
-  if (!jobId) {
-    return res.status(400).json({ error: 'jobId is required' });
-  }
 
   try {
     const job = getJob(jobId);

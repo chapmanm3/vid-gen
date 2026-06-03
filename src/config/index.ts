@@ -10,7 +10,7 @@ const envSchema = z.object({
   REDDIT_CLIENT_ID: z.string().optional(),
   REDDIT_CLIENT_SECRET: z.string().optional(),
   OPENAI_TTS_VOICE: z.enum(['alloy', 'echo', 'fable', 'onyx', 'nova', 'shimmer']).default('alloy'),
-  OPENAI_TTS_MODEL: z.enum(['tts-1', 'tts-1-hd']).default('tts-1'),
+  OPENAI_TTS_MODEL: z.enum(['tts-1', 'tts-1-hd', 'gpt-4o-mini-tts']).default('gpt-4o-mini-tts'),
   OPENAI_TTS_SPEED: z.coerce.number().min(0.25).max(4.0).default(1.0),
 });
 

@@ -1,16 +1,19 @@
 import { Router, Request, Response } from 'express';
+import { z } from 'zod';
 import { VideoRenderer } from '../video/renderer';
 import { getJob, updateJobStatus } from '../db';
 import { info, error } from '../utils/logger';
+import { validateRequest } from '../middleware/validate';
+import path from 'path';
+
+const renderVideoSchema = z.object({
+  jobId: z.string().min(1),
+});
 
 const router: Router = Router();
 
-router.post('/api/video/render', async (req: Request, res: Response) => {
+router.post('/api/video/render', validateRequest(renderVideoSchema), async (req: Request, res: Response) => {
   const { jobId } = req.body;
-
-  if (!jobId) {
-    return res.status(400).json({ error: 'jobId is required' });
-  }
 
   try {
     const job = getJob(jobId);
@@ -27,7 +30,7 @@ router.post('/api/video/render', async (req: Request, res: Response) => {
     }
 
     info('Starting video render', { jobId });
-    const audioPath = job.videoPath || '';
+    const audioPath = path.join(process.cwd(), 'data', 'audio', jobId, 'full-audio.mp3');
     const visualPlan = script.segments.map((s: Record<string, unknown>) => ({
       segment: s,
       fallbackColor: '#1a1a2e',

@@ -6,9 +6,16 @@ export type SegmentType = z.infer<typeof segmentTypeSchema>;
 export const scriptSegmentSchema = z.object({
   type: segmentTypeSchema,
   text: z.string().min(1),
-  estimatedDuration: z.number().positive(),
+  estimatedDuration: z.number().positive().optional(),
   visualCue: z.string().optional(),
   keywords: z.array(z.string()).default([]),
+}).transform((seg) => {
+  const cleanedText = seg.text.replace(/\[.*?\]/g, '').replace(/\s+/g, ' ').trim();
+  return {
+    ...seg,
+    text: cleanedText,
+    estimatedDuration: seg.estimatedDuration ?? estimateDuration(cleanedText.split(/\s+/).length),
+  };
 });
 export type ScriptSegment = z.infer<typeof scriptSegmentSchema>;
 
@@ -16,9 +23,13 @@ export const scriptSchema = z.object({
   title: z.string().min(1),
   topic: z.string().min(1),
   segments: z.array(scriptSegmentSchema).min(1),
-  estimatedTotalDuration: z.number().positive(),
-  targetWordCount: z.number().positive(),
-});
+  estimatedTotalDuration: z.number().positive().optional(),
+  targetWordCount: z.number().positive().optional(),
+}).transform((data) => ({
+  ...data,
+  estimatedTotalDuration: data.estimatedTotalDuration ?? data.segments.reduce((sum, s) => sum + s.estimatedDuration, 0),
+  targetWordCount: data.targetWordCount ?? data.segments.reduce((sum, s) => sum + s.text.split(/\s+/).length, 0),
+}));
 export type Script = z.infer<typeof scriptSchema>;
 
 export function validateScript(data: unknown): Script {

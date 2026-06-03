@@ -112,7 +112,7 @@ describe('Script Routes', () => {
         .send({ topic: 'Test' });
 
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe('jobId is required');
+      expect(response.body.error).toBe('Invalid request');
     });
 
     it('returns 400 when neither topic nor keywords provided', async () => {
@@ -124,7 +124,7 @@ describe('Script Routes', () => {
         .send({ jobId: 'test-job-3' });
 
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe('topic or keywords is required');
+      expect(response.body.error).toBe('Invalid request');
     });
 
     it('handles generation failure', async () => {

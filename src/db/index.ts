@@ -9,12 +9,24 @@ export interface Job {
   script: string | null;
   videoPath: string | null;
   error: string | null;
+  retryCount: number;
   createdAt: string;
   updatedAt: string;
 }
 
 let db: Database.Database | null = null;
 let currentDbPath: string | null = null;
+
+type ChangeListener = () => void;
+const changeListeners: ChangeListener[] = [];
+
+export function onJobChange(fn: ChangeListener): void {
+  changeListeners.push(fn);
+}
+
+function notifyChange(): void {
+  for (const fn of changeListeners) fn();
+}
 
 export function getDatabase(dbPath?: string): Database.Database {
   const filePath = dbPath || process.env.DB_PATH || path.join(process.cwd(), 'data', 'app.db');
@@ -43,10 +55,17 @@ function initializeSchema(database: Database.Database): void {
       script TEXT,
       videoPath TEXT,
       error TEXT,
+      retryCount INTEGER NOT NULL DEFAULT 0,
       createdAt TEXT NOT NULL DEFAULT (datetime('now')),
       updatedAt TEXT NOT NULL DEFAULT (datetime('now'))
     )
   `);
+
+  const columns = database.prepare("PRAGMA table_info(jobs)").all() as { name: string }[];
+  const hasRetryCount = columns.some((col) => col.name === 'retryCount');
+  if (!hasRetryCount) {
+    database.exec('ALTER TABLE jobs ADD COLUMN retryCount INTEGER NOT NULL DEFAULT 0');
+  }
 }
 
 export function createJob(id: string, topic?: string): Job {
@@ -55,6 +74,7 @@ export function createJob(id: string, topic?: string): Job {
     'INSERT INTO jobs (id, topic, status) VALUES (?, ?, ?)'
   );
   stmt.run(id, topic || null, 'pending');
+  notifyChange();
   return getJob(id)!;
 }
 
@@ -92,6 +112,7 @@ export function updateJobStatus(
     `UPDATE jobs SET ${fields.join(', ')} WHERE id = ?`
   );
   stmt.run(...values);
+  notifyChange();
 
   return getJob(id);
 }
@@ -113,4 +134,13 @@ export function resetDatabase(): void {
     db = null;
     currentDbPath = null;
   }
+}
+
+export function resetJobForRetry(id: string): Job | null {
+  const database = getDatabase();
+  const stmt = database.prepare(
+    `UPDATE jobs SET status = 'pending', error = NULL, videoPath = NULL, retryCount = retryCount + 1, updatedAt = datetime('now') WHERE id = ?`
+  );
+  stmt.run(id);
+  return getJob(id);
 }

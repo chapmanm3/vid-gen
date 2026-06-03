@@ -1,0 +1,801 @@
+[2026-05-16T22:03:20.083Z] [INFO] ============================================================
+[2026-05-16T22:03:20.083Z] [INFO] E2E Video Creation Test
+[2026-05-16T22:03:20.084Z] [INFO] ============================================================
+[2026-05-16T22:03:20.084Z] [INFO] Configuration
+{
+  "baseUrl": "http://localhost:3000",
+  "topic": "The Fall of the Roman Empire",
+  "pollInterval": "5000ms",
+  "pollTimeout": "300000ms",
+  "startServer": true,
+  "logFile": "/home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T22-03-20-080Z.log"
+}
+[2026-05-16T22:03:20.084Z] [STEP] Starting server
+[2026-05-16T22:03:20.084Z] [INFO] Starting server...
+[2026-05-16T22:03:20.111Z] [INFO] Server not ready yet, retrying (1/30)...
+[2026-05-16T22:03:22.112Z] [INFO] Server not ready yet, retrying (2/30)...
+[2026-05-16T22:03:22.677Z] [INFO] [server stdout] [36m[INFO][0m 6:03:22 PM Server started {"port":3000,"env":"development"}
+[2026-05-16T22:03:24.119Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:24 PM GET /health {"method":"GET","path":"/health"}
+[2026-05-16T22:03:24.126Z] [INFO] Server is ready
+[2026-05-16T22:03:24.126Z] [STEP] Testing health check endpoint
+[2026-05-16T22:03:24.126Z] [INFO] [server stdout] [36m[INFO][0m 6:03:24 PM GET /health 200 7ms {"method":"GET","path":"/health","status":200,"duration":7}
+[2026-05-16T22:03:24.127Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:24 PM GET /health {"method":"GET","path":"/health"}
+[2026-05-16T22:03:24.129Z] [INFO] Health check passed
+[2026-05-16T22:03:24.130Z] [STEP] Submitting video job
+{
+  "topic": "The Fall of the Roman Empire"
+}
+[2026-05-16T22:03:24.132Z] [INFO] [server stdout] [36m[INFO][0m 6:03:24 PM GET /health 200 2ms {"method":"GET","path":"/health","status":200,"duration":2}
+[2026-05-16T22:03:24.133Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:24 PM POST /api/videos {"method":"POST","path":"/api/videos"}
+[2026-05-16T22:03:24.178Z] [INFO] [server stdout] [36m[INFO][0m 6:03:24 PM Video job enqueued {"jobId":"job-1778969004151-1","topic":"The Fall of the Roman Empire"}
+[2026-05-16T22:03:24.181Z] [INFO] Job submitted successfully
+{
+  "jobId": "job-1778969004151-1",
+  "status": "queued"
+}
+[2026-05-16T22:03:24.181Z] [STEP] Polling job status
+{
+  "jobId": "job-1778969004151-1"
+}
+[2026-05-16T22:03:24.182Z] [INFO] [server stdout] [36m[INFO][0m 6:03:24 PM POST /api/videos 201 47ms {"method":"POST","path":"/api/videos","status":201,"duration":47}
+[36m[INFO][0m 6:03:24 PM Starting pipeline {"jobId":"job-1778969004151-1"}
+[2026-05-16T22:03:24.252Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:24 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:24.253Z] [INFO] Job status: queued (elapsed: 0.0s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:24.253Z] [INFO] [server stdout] [36m[INFO][0m 6:03:24 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:03:29.258Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:29 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:29.261Z] [INFO] Job status: queued (elapsed: 5.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:29.261Z] [INFO] [server stdout] [36m[INFO][0m 6:03:29 PM GET /api/videos/job-1778969004151-1 200 3ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":3}
+[2026-05-16T22:03:34.265Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:34 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:34.269Z] [INFO] Job status: queued (elapsed: 10.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:34.270Z] [INFO] [server stdout] [36m[INFO][0m 6:03:34 PM GET /api/videos/job-1778969004151-1 200 3ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":3}
+[2026-05-16T22:03:39.277Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:39 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:39.281Z] [INFO] Job status: queued (elapsed: 15.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:39.281Z] [INFO] [server stdout] [36m[INFO][0m 6:03:39 PM GET /api/videos/job-1778969004151-1 200 4ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":4}
+[2026-05-16T22:03:44.286Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:44 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:44.289Z] [INFO] Job status: queued (elapsed: 20.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:44.289Z] [INFO] [server stdout] [36m[INFO][0m 6:03:44 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:03:49.292Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:49 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:49.295Z] [INFO] Job status: queued (elapsed: 25.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:49.295Z] [INFO] [server stdout] [36m[INFO][0m 6:03:49 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:03:54.298Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:54 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:54.300Z] [INFO] Job status: queued (elapsed: 30.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:54.300Z] [INFO] [server stdout] [36m[INFO][0m 6:03:54 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:03:59.303Z] [INFO] [server stdout] [90m[DEBUG][0m 6:03:59 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:03:59.304Z] [INFO] Job status: queued (elapsed: 35.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:03:59.304Z] [INFO] [server stdout] [36m[INFO][0m 6:03:59 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:04.306Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:04 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:04.308Z] [INFO] Job status: queued (elapsed: 40.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:04.308Z] [INFO] [server stdout] [36m[INFO][0m 6:04:04 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:04:09.311Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:09 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:09.313Z] [INFO] Job status: queued (elapsed: 45.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:09.313Z] [INFO] [server stdout] [36m[INFO][0m 6:04:09 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:04:14.315Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:14 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:14.316Z] [INFO] Job status: queued (elapsed: 50.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:14.316Z] [INFO] [server stdout] [36m[INFO][0m 6:04:14 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:19.319Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:19 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:19.321Z] [INFO] Job status: queued (elapsed: 55.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:19.321Z] [INFO] [server stdout] [36m[INFO][0m 6:04:19 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:24.322Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:24 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:24.323Z] [INFO] Job status: queued (elapsed: 60.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:24.323Z] [INFO] [server stdout] [36m[INFO][0m 6:04:24 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:29.324Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:29 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:29.326Z] [INFO] Job status: queued (elapsed: 65.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:29.326Z] [INFO] [server stdout] [36m[INFO][0m 6:04:29 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:04:34.335Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:34 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:34.337Z] [INFO] Job status: queued (elapsed: 70.1s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:34.337Z] [INFO] [server stdout] [36m[INFO][0m 6:04:34 PM GET /api/videos/job-1778969004151-1 200 4ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":4}
+[2026-05-16T22:04:39.338Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:39 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:39.340Z] [INFO] Job status: queued (elapsed: 75.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:39.340Z] [INFO] [server stdout] [36m[INFO][0m 6:04:39 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:04:44.341Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:44 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:44.342Z] [INFO] Job status: queued (elapsed: 80.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:44.342Z] [INFO] [server stdout] [36m[INFO][0m 6:04:44 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:49.343Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:49 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:49.344Z] [INFO] Job status: queued (elapsed: 85.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:49.344Z] [INFO] [server stdout] [36m[INFO][0m 6:04:49 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:04:54.345Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:54 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:54.346Z] [INFO] Job status: queued (elapsed: 90.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:54.346Z] [INFO] [server stdout] [36m[INFO][0m 6:04:54 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:04:59.347Z] [INFO] [server stdout] [90m[DEBUG][0m 6:04:59 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:04:59.348Z] [INFO] Job status: queued (elapsed: 95.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:04:59.348Z] [INFO] [server stdout] [36m[INFO][0m 6:04:59 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:05:04.349Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:04 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:04.350Z] [INFO] Job status: queued (elapsed: 100.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:04.350Z] [INFO] [server stdout] [36m[INFO][0m 6:05:04 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:09.353Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:09 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:09.354Z] [INFO] Job status: queued (elapsed: 105.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:09.354Z] [INFO] [server stdout] [36m[INFO][0m 6:05:09 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:14.364Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:14 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[36m[INFO][0m 6:05:14 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:05:14.365Z] [INFO] Job status: queued (elapsed: 110.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:19.368Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:19 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:19.369Z] [INFO] Job status: queued (elapsed: 115.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:19.369Z] [INFO] [server stdout] [36m[INFO][0m 6:05:19 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:24.371Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:24 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:24.373Z] [INFO] Job status: queued (elapsed: 120.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:24.373Z] [INFO] [server stdout] [36m[INFO][0m 6:05:24 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:29.375Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:29 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:29.376Z] [INFO] Job status: queued (elapsed: 125.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:29.376Z] [INFO] [server stdout] [36m[INFO][0m 6:05:29 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:34.377Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:34 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:34.378Z] [INFO] Job status: queued (elapsed: 130.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:34.378Z] [INFO] [server stdout] [36m[INFO][0m 6:05:34 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:05:39.379Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:39 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:39.380Z] [INFO] Job status: queued (elapsed: 135.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:39.380Z] [INFO] [server stdout] [36m[INFO][0m 6:05:39 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:44.386Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:44 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:44.389Z] [INFO] Job status: queued (elapsed: 140.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:44.389Z] [INFO] [server stdout] [36m[INFO][0m 6:05:44 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:05:49.391Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:49 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:49.392Z] [INFO] Job status: queued (elapsed: 145.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:49.392Z] [INFO] [server stdout] [36m[INFO][0m 6:05:49 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:54.393Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:54 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:54.394Z] [INFO] Job status: queued (elapsed: 150.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:54.394Z] [INFO] [server stdout] [36m[INFO][0m 6:05:54 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:05:59.395Z] [INFO] [server stdout] [90m[DEBUG][0m 6:05:59 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:05:59.396Z] [INFO] Job status: queued (elapsed: 155.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:05:59.396Z] [INFO] [server stdout] [36m[INFO][0m 6:05:59 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:06:04.397Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:04 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:04.398Z] [INFO] Job status: queued (elapsed: 160.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:04.398Z] [INFO] [server stdout] [36m[INFO][0m 6:06:04 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:09.400Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:09 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:09.400Z] [INFO] Job status: queued (elapsed: 165.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:09.400Z] [INFO] [server stdout] [36m[INFO][0m 6:06:09 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:14.401Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:14 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:14.402Z] [INFO] Job status: queued (elapsed: 170.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:14.402Z] [INFO] [server stdout] [36m[INFO][0m 6:06:14 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:19.404Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:19 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:19.405Z] [INFO] Job status: queued (elapsed: 175.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:19.405Z] [INFO] [server stdout] [36m[INFO][0m 6:06:19 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:24.407Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:24 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:24.408Z] [INFO] Job status: queued (elapsed: 180.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:24.408Z] [INFO] [server stdout] [36m[INFO][0m 6:06:24 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:29.409Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:29 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:29.410Z] [INFO] Job status: queued (elapsed: 185.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:29.410Z] [INFO] [server stdout] [36m[INFO][0m 6:06:29 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:34.413Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:34 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:34.415Z] [INFO] Job status: queued (elapsed: 190.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:34.415Z] [INFO] [server stdout] [36m[INFO][0m 6:06:34 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:39.418Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:39 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:39.419Z] [INFO] Job status: queued (elapsed: 195.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:39.419Z] [INFO] [server stdout] [36m[INFO][0m 6:06:39 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:44.420Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:44 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:44.421Z] [INFO] Job status: queued (elapsed: 200.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:44.421Z] [INFO] [server stdout] [36m[INFO][0m 6:06:44 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:49.422Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:49 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:49.423Z] [INFO] Job status: queued (elapsed: 205.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:49.423Z] [INFO] [server stdout] [36m[INFO][0m 6:06:49 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:06:54.434Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:54 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:54.435Z] [INFO] Job status: queued (elapsed: 210.2s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:54.435Z] [INFO] [server stdout] [36m[INFO][0m 6:06:54 PM GET /api/videos/job-1778969004151-1 200 5ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":5}
+[2026-05-16T22:06:59.437Z] [INFO] [server stdout] [90m[DEBUG][0m 6:06:59 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:06:59.439Z] [INFO] Job status: queued (elapsed: 215.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:06:59.439Z] [INFO] [server stdout] [36m[INFO][0m 6:06:59 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:04.441Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:04 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:04.443Z] [INFO] Job status: queued (elapsed: 220.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:04.443Z] [INFO] [server stdout] [36m[INFO][0m 6:07:04 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:07:09.444Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:09 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:09.445Z] [INFO] Job status: queued (elapsed: 225.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:09.445Z] [INFO] [server stdout] [36m[INFO][0m 6:07:09 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:14.447Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:14 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:14.448Z] [INFO] Job status: queued (elapsed: 230.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:14.448Z] [INFO] [server stdout] [36m[INFO][0m 6:07:14 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:19.451Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:19 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:19.451Z] [INFO] Job status: queued (elapsed: 235.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:19.451Z] [INFO] [server stdout] [36m[INFO][0m 6:07:19 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:07:24.452Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:24 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:24.453Z] [INFO] Job status: queued (elapsed: 240.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:24.453Z] [INFO] [server stdout] [36m[INFO][0m 6:07:24 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:29.455Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:29 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:29.455Z] [INFO] Job status: queued (elapsed: 245.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:29.455Z] [INFO] [server stdout] [36m[INFO][0m 6:07:29 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:07:34.459Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:34 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:34.467Z] [INFO] Job status: queued (elapsed: 250.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:34.468Z] [INFO] [server stdout] [36m[INFO][0m 6:07:34 PM GET /api/videos/job-1778969004151-1 200 4ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":4}
+[2026-05-16T22:07:39.469Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:39 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:39.469Z] [INFO] Job status: queued (elapsed: 255.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:39.469Z] [INFO] [server stdout] [36m[INFO][0m 6:07:39 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:44.483Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:44 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:44.484Z] [INFO] Job status: queued (elapsed: 260.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:44.484Z] [INFO] [server stdout] [36m[INFO][0m 6:07:44 PM GET /api/videos/job-1778969004151-1 200 5ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":5}
+[2026-05-16T22:07:49.486Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:49 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:49.486Z] [INFO] Job status: queued (elapsed: 265.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:49.486Z] [INFO] [server stdout] [36m[INFO][0m 6:07:49 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:07:54.487Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:54 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:54.487Z] [INFO] Job status: queued (elapsed: 270.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:54.488Z] [INFO] [server stdout] [36m[INFO][0m 6:07:54 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:07:59.489Z] [INFO] [server stdout] [90m[DEBUG][0m 6:07:59 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:07:59.490Z] [INFO] Job status: queued (elapsed: 275.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:07:59.490Z] [INFO] [server stdout] [36m[INFO][0m 6:07:59 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:08:04.492Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:04 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:08:04.492Z] [INFO] Job status: queued (elapsed: 280.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:08:04.492Z] [INFO] [server stdout] [36m[INFO][0m 6:08:04 PM GET /api/videos/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:08:09.495Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:09 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:08:09.496Z] [INFO] Job status: queued (elapsed: 285.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:08:09.496Z] [INFO] [server stdout] [36m[INFO][0m 6:08:09 PM GET /api/videos/job-1778969004151-1 200 2ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":2}
+[2026-05-16T22:08:14.497Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:14 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:08:14.497Z] [INFO] Job status: queued (elapsed: 290.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:08:14.497Z] [INFO] [server stdout] [36m[INFO][0m 6:08:14 PM GET /api/videos/job-1778969004151-1 200 0ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":0}
+[2026-05-16T22:08:19.508Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:19 PM GET /api/videos/job-1778969004151-1 {"method":"GET","path":"/api/videos/job-1778969004151-1"}
+[2026-05-16T22:08:19.513Z] [INFO] Job status: queued (elapsed: 295.3s)
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:08:19.513Z] [INFO] [server stdout] [36m[INFO][0m 6:08:19 PM GET /api/videos/job-1778969004151-1 200 4ms {"method":"GET","path":"/api/videos/job-1778969004151-1","status":200,"duration":4}
+[2026-05-16T22:08:24.513Z] [ERROR] Job polling timed out
+{
+  "jobId": "job-1778969004151-1",
+  "timeoutMs": 300000
+}
+[2026-05-16T22:08:24.513Z] [ERROR] Pipeline did not complete successfully
+[2026-05-16T22:08:24.514Z] [STEP] Checking database for job record
+[2026-05-16T22:08:24.515Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:24 PM GET /api/jobs/job-1778969004151-1 {"method":"GET","path":"/api/jobs/job-1778969004151-1"}
+[2026-05-16T22:08:24.515Z] [INFO] [server stdout] [36m[INFO][0m 6:08:24 PM Fetched job {"jobId":"job-1778969004151-1","status":"queued"}
+[2026-05-16T22:08:24.516Z] [INFO] Database job record found
+{
+  "body": {
+    "id": "job-1778969004151-1",
+    "status": "queued",
+    "topic": "The Fall of the Roman Empire",
+    "createdAt": "2026-05-16T22:03:24.151Z",
+    "updatedAt": "2026-05-16T22:03:24.151Z"
+  }
+}
+[2026-05-16T22:08:24.516Z] [STEP] Listing all jobs
+[2026-05-16T22:08:24.517Z] [INFO] [server stdout] [36m[INFO][0m 6:08:24 PM GET /api/jobs/job-1778969004151-1 200 1ms {"method":"GET","path":"/api/jobs/job-1778969004151-1","status":200,"duration":1}
+[2026-05-16T22:08:24.517Z] [INFO] [server stdout] [90m[DEBUG][0m 6:08:24 PM GET /api/jobs {"method":"GET","path":"/api/jobs"}
+[2026-05-16T22:08:24.517Z] [INFO] [server stdout] [36m[INFO][0m 6:08:24 PM Fetched all jobs {"count":1}
+[2026-05-16T22:08:24.518Z] [INFO] Found 1 jobs in database
+[2026-05-16T22:08:24.518Z] [INFO]   - job-1778969004151-1: processing (The Fall of the Roman Empire)
+[2026-05-16T22:08:24.518Z] [INFO] ============================================================
+[2026-05-16T22:08:24.518Z] [INFO] TEST SUMMARY
+[2026-05-16T22:08:24.518Z] [INFO] ============================================================
+[2026-05-16T22:08:24.518Z] [INFO]   [PASS] Server startup - Server started successfully
+[2026-05-16T22:08:24.518Z] [INFO]   [PASS] Health check
+[2026-05-16T22:08:24.518Z] [INFO]   [PASS] Job submission - job-1778969004151-1
+[2026-05-16T22:08:24.518Z] [INFO]   [FAIL] Pipeline execution - Status: timeout
+[2026-05-16T22:08:24.518Z] [INFO]   [FAIL] Video file validation - No video path returned
+[2026-05-16T22:08:24.518Z] [INFO]   [PASS] Database record
+[2026-05-16T22:08:24.518Z] [INFO] 
+[2026-05-16T22:08:24.518Z] [INFO] Total: 6 | Passed: 4 | Failed: 2
+[2026-05-16T22:08:24.518Z] [INFO] Log file: /home/matt/vid-gen/test-e2e-logs/e2e-test-2026-05-16T22-03-20-080Z.log
+[2026-05-16T22:08:24.518Z] [INFO] Stopping server...
+[2026-05-16T22:08:24.519Z] [INFO] [server stdout] [36m[INFO][0m 6:08:24 PM GET /api/jobs 200 1ms {"method":"GET","path":"/api/jobs","status":200,"duration":1}
+[2026-05-16T22:08:24.556Z] [INFO] Server stopped

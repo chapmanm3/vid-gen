@@ -57,7 +57,7 @@ describe('Videos Routes', () => {
       const response = await request(app).post('/api/videos').send({});
 
       expect(response.status).toBe(400);
-      expect(response.body.error).toBe('topic or keywords is required');
+      expect(response.body.error).toBe('Invalid request');
     });
   });
 

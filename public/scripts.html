@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scripts - YouTube Video Generator</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: #0f0f0f; color: #e1e1e1; min-height: 100vh; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+    h1 { font-size: 1.75rem; margin-bottom: 0.5rem; color: #fff; }
+    .subtitle { color: #aaa; margin-bottom: 2rem; }
+    .nav { display: flex; gap: 1rem; margin-bottom: 1.5rem; }
+    .nav a { color: #3ea6ff; text-decoration: none; padding: 0.5rem 1rem; border-radius: 8px; border: 1px solid #333; }
+    .nav a:hover { background: #1a1a1a; }
+    .nav a.active { background: #3ea6ff; color: #0f0f0f; border-color: #3ea6ff; }
+    .card { background: #1a1a1a; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem; border: 1px solid #2a2a2a; }
+    .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; }
+    .refresh-btn { background: transparent; border: 1px solid #444; color: #aaa; padding: 0.5rem 1rem; font-size: 0.875rem; border-radius: 8px; cursor: pointer; }
+    .refresh-btn:hover { background: #333; color: #fff; }
+    .empty { text-align: center; color: #666; padding: 2rem; }
+    .job-card { background: #222; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; border-left: 4px solid #555; cursor: pointer; }
+    .job-card:hover { background: #2a2a2a; }
+    .job-card.queued { border-left-color: #f5c542; }
+    .job-card.processing { border-left-color: #3ea6ff; }
+    .job-card.completed { border-left-color: #2ba640; }
+    .job-card.failed { border-left-color: #cc0000; }
+    .job-header { display: flex; justify-content: space-between; align-items: center; }
+    .job-topic { font-weight: 600; }
+    .job-status { font-size: 0.875rem; color: #aaa; text-transform: capitalize; }
+    .job-meta { font-size: 0.75rem; color: #666; margin-top: 0.5rem; }
+    .script-detail { display: none; margin-top: 1rem; padding-top: 1rem; border-top: 1px solid #333; }
+    .script-detail.open { display: block; }
+    .segment { background: #1a1a1a; border-radius: 6px; padding: 1rem; margin-bottom: 0.75rem; }
+    .segment-header { display: flex; justify-content: space-between; margin-bottom: 0.5rem; }
+    .segment-type { font-weight: 600; color: #3ea6ff; text-transform: capitalize; }
+    .segment-duration { font-size: 0.75rem; color: #666; }
+    .segment-text { font-size: 0.875rem; line-height: 1.5; color: #ccc; }
+    .segment-keywords { margin-top: 0.5rem; display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .keyword { font-size: 0.7rem; background: #333; color: #aaa; padding: 0.2rem 0.5rem; border-radius: 4px; }
+    .script-title { font-size: 1.1rem; font-weight: 600; color: #fff; margin-bottom: 0.5rem; }
+    .script-meta { font-size: 0.8rem; color: #888; margin-bottom: 1rem; }
+    .no-script { color: #666; font-style: italic; padding: 1rem; }
+    .error-text { color: #ff6b6b; font-size: 0.875rem; }
+    .toggle-icon { transition: transform 0.2s; display: inline-block; }
+    .toggle-icon.open { transform: rotate(90deg); }
+    .retry-btn { background: transparent; border: 1px solid #cc0000; color: #ff6b6b; padding: 0.25rem 0.75rem; font-size: 0.75rem; border-radius: 6px; cursor: pointer; margin-left: 0.5rem; }
+    .retry-btn:hover { background: #cc0000; color: #fff; }
+    .retry-btn:disabled { opacity: 0.5; cursor: not-allowed; }
+    .retry-count { font-size: 0.7rem; color: #888; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Scripts & Task Data</h1>
+    <p class="subtitle">View generated scripts and job details</p>
+
+    <div class="nav">
+      <a href="/">Home</a>
+      <a href="/scripts.html" class="active">Scripts</a>
+    </div>
+
+    <div class="header">
+      <h2 style="font-size:1.25rem;">Jobs</h2>
+      <button class="refresh-btn" id="refresh-btn">Refresh</button>
+    </div>
+
+    <div id="job-list">
+      <div class="empty">No jobs yet.</div>
+    </div>
+  </div>
+
+  <script>
+    const jobList = document.getElementById('job-list');
+    const refreshBtn = document.getElementById('refresh-btn');
+    let openJobId = null;
+
+    async function fetchJobs() {
+      try {
+        const res = await fetch('/api/jobs');
+        if (res.ok) {
+          const jobs = await res.json();
+          renderJobs(jobs);
+        }
+      } catch (err) {
+        console.error('Failed to fetch jobs:', err);
+      }
+    }
+
+    function renderJobs(jobs) {
+      if (!jobs || jobs.length === 0) {
+        jobList.innerHTML = '<div class="empty">No jobs yet.</div>';
+        return;
+      }
+
+      jobList.innerHTML = jobs.map(job => {
+        const script = job.script ? JSON.parse(job.script) : null;
+        const isOpen = openJobId === job.id;
+        const retryCount = job.retryCount || 0;
+
+        return `
+          <div class="job-card ${job.status}" data-id="${job.id}">
+            <div class="job-header" onclick="toggleJob('${job.id}')">
+              <span class="toggle-icon ${isOpen ? 'open' : ''}">▶</span>
+              <span class="job-topic">${escapeHtml(job.topic || 'Untitled')}</span>
+              <span class="job-status">${job.status}${retryCount > 0 ? ` <span class="retry-count">(retry ${retryCount})</span>` : ''}</span>
+              ${job.status === 'failed' ? `<button class="retry-btn" onclick="event.stopPropagation(); retryJob('${job.id}', this)">Retry</button>` : ''}
+            </div>
+            <div class="job-meta">
+              ID: ${job.id} | Created: ${formatDate(job.createdAt)}
+              ${job.status === 'completed' && job.videoPath ? ` | <a href="${job.videoPath}" class="video-link" download style="color:#3ea6ff;">Download Video</a>` : ''}
+              ${job.status === 'failed' && job.error ? ` | <span class="error-text">Error: ${escapeHtml(job.error)}</span>` : ''}
+            </div>
+            <div class="script-detail ${isOpen ? 'open' : ''}" id="detail-${job.id}">
+              ${script ? renderScript(script) : '<div class="no-script">No script generated yet.</div>'}
+            </div>
+          </div>
+        `;
+      }).join('');
+    }
+
+    function renderScript(script) {
+      const totalDuration = script.estimatedTotalDuration || 0;
+      const totalWords = script.targetWordCount || 0;
+
+      return `
+        <div class="script-title">${escapeHtml(script.title)}</div>
+        <div class="script-meta">
+          Topic: ${escapeHtml(script.topic)} | 
+          Segments: ${script.segments.length} | 
+          Duration: ${formatDuration(totalDuration)} | 
+          Words: ${totalWords}
+        </div>
+        ${script.segments.map((seg, i) => `
+          <div class="segment">
+            <div class="segment-header">
+              <span class="segment-type">${seg.type}</span>
+              <span class="segment-duration">${formatDuration(seg.estimatedDuration)}</span>
+            </div>
+            <div class="segment-text">${escapeHtml(seg.text)}</div>
+            ${seg.visualCue ? `<div style="font-size:0.75rem;color:#888;margin-top:0.5rem;">Visual: ${escapeHtml(seg.visualCue)}</div>` : ''}
+            ${seg.keywords && seg.keywords.length > 0 ? `
+              <div class="segment-keywords">
+                ${seg.keywords.map(k => `<span class="keyword">${escapeHtml(k)}</span>`).join('')}
+              </div>
+            ` : ''}
+          </div>
+        `).join('')}
+      `;
+    }
+
+    function toggleJob(jobId) {
+      openJobId = openJobId === jobId ? null : jobId;
+      fetchJobs();
+    }
+
+    async function retryJob(jobId, btn) {
+      btn.disabled = true;
+      btn.textContent = 'Retrying...';
+
+      try {
+        const res = await fetch(`/api/jobs/${jobId}/retry`, { method: 'POST' });
+        if (!res.ok) {
+          const data = await res.json();
+          throw new Error(data.error || 'Retry failed');
+        }
+        await fetchJobs();
+      } catch (err) {
+        btn.disabled = false;
+        btn.textContent = 'Retry';
+        console.error('Retry failed:', err);
+      }
+    }
+
+    function formatDuration(seconds) {
+      if (!seconds) return '0s';
+      const mins = Math.floor(seconds / 60);
+      const secs = Math.round(seconds % 60);
+      return mins > 0 ? `${mins}m ${secs}s` : `${secs}s`;
+    }
+
+    function escapeHtml(str) {
+      const div = document.createElement('div');
+      div.textContent = str;
+      return div.innerHTML;
+    }
+
+    function formatDate(dateStr) {
+      if (!dateStr) return 'N/A';
+      return new Date(dateStr).toLocaleString();
+    }
+
+    refreshBtn.addEventListener('click', fetchJobs);
+
+    fetchJobs();
+    setInterval(fetchJobs, 5000);
+  </script>
+</body>
+</html>
